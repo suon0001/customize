@@ -1,19 +1,6 @@
 <?php
-
-session_start();
-
-function logged_in()
-{
-    return isset($_SESSION['user_id']);
-}
-
-function confirm_logged_in()
-{
-    if (!logged_in()) {
-        redirect_to("login.php");
-    }
-}
-
+require_once("../includes/db/connection.php");
+require_once("../includes/function.php");
 ?>
 <div id="box">
 
@@ -28,7 +15,7 @@ function confirm_logged_in()
     </form>
 </div>
 
-<style type="text/css">
+<style>
     #text{
         height: 25px;
         border-radius: 5px;
