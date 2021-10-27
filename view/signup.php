@@ -1,28 +1,22 @@
 <?php
+require_once("../includes/db/connection.php");
+require_once("../includes/function.php");
 
-session_start();
-include("./webshop/includes/db/connection.php");
-include("webshop/includes/function.php");
+if (isset($_POST['submit'])) {
+    $username = trim(mysqli_real_escape_string($con, $_POST['username']));
+    $password = trim(mysqli_real_escape_string($con, $_POST['password']));
+    $iterations = ['cost' => 15];
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    //something was posted
-    $user_name = $_POST['Username'];
-    $password = $_POST['password'];
-
-    if (!empty($user_name) && !empty($password) && !is_numeric($user_name)) {
-
-        //save to database
-        $user_id = random_num(20);
-        $query = "INSERT INTO login (LoginID, Username, Password) VALUES ('$LoginID', '$Username', '$Password')";
-        mysqli_query($con, $query);
-
-        header("Location: login.php");
-        die;
-    }else
-    {
-        echo "Please into some valid information!";
+    $query = "INSERT INTO `login` (username, password) VALUES ('{$username}', '{$password}')";
+    $result = mysqli_query($con, $query);
+    if ($result) {
+        $message = "User Created.";
+    } else {
+        $message = "Try again.";
+        $message .= "<br />" . mysqli_error($con);
     }
 }
+
 
 ?>
 
@@ -34,15 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
 
 
-
 <div id="box">
 
-    <div style="font-size: 20px; margin: 10px;">Login</div>
+    <div style="font-size: 20px; margin: 10px;">Signup</div>
     <form method="post">
-        <input id="text" type="text" name="Username"> <br><br>
+        <input id="text" type="text" name="username"> <br><br>
         <input id="text" type="password" name="password"><br><br>
 
-        <input id="button" type="submit" value="signup"><br><br>
+        <input id="submit" type="submit" value="signup"><br><br>
 
         <a href="login.php">LOGIN</a><br><br>
     </form>
@@ -76,3 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 </body>
 </html>
+
+<?php
+if (isset($con)) {
+    mysqli_close($con);
+}
+?>

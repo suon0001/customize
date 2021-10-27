@@ -17,10 +17,10 @@
         <ul id="MenuItems">
             <li><a href="../index.php">HOME</a></li>
             <li><a href="news.php">NEWS</a></li>
-            <li><a href="products.php">PRODUCTS</a></li>
+            <li><a href="view/products.php">PRODUCTS</a></li>
             <li><a href="customize.php">CUSTOMIZE</a></li>
             <li><a href=contact.php>CONTACT</a></li>
-            <li><a href="login.php">LOGIN</a></li>
+            <li><a href="view/login.php">LOGIN</a></li>
         </ul>
     </nav>
     <a href=""><i class="fa fa-shopping-basket"></i></a>
