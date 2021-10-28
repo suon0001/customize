@@ -41,10 +41,10 @@ CREATE TABLE Customize
 
 CREATE TABLE Product
 (
-    ProductID   INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Title       VARCHAR(255) NULL,
-    ProductType VARCHAR(255) NULL,
-    Price       VARCHAR(20),
-    Custom_id    INT          NOT NULL,
-    FOREIGN KEY (Custom_id) REFERENCES Customize (Custom_id)
+    product_id   INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title       VARCHAR(255) NULL,
+    product_type VARCHAR(255) NULL,
+    price       VARCHAR(20),
+    custom_id    INT          NOT NULL,
+    FOREIGN KEY (custom_id) REFERENCES Customize (custom_id)
 ) ENGINE = InnoDB;

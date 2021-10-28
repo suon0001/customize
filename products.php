@@ -1,6 +1,6 @@
 
 
-<?php include "./navigation.php" ?>
+<?php include "navigation.php" ?>
 <div class="row row-2">
     <h2>All Products</h2>
     <select name="" id="categories">
@@ -14,7 +14,7 @@
 <div class="small-container">
     <div class="row">
         <div class="col-4">
-            <img src="../includes/images/product.jpg">
+            <img src="includes/images/product.jpg">
             <h4>Product name 1</h4>
             <div class="rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="col-4">
-            <img src="../includes/images/product.jpg">
+            <img src="includes/images/product.jpg">
             <h4>Product name 2</h4>
             <div class="rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="col-4">
-            <img src="../includes/images/product.jpg">
+            <img src="includes/images/product.jpg">
             <h4>Product name 3</h4>
             <div class="rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="col-4">
-            <img src="../includes/images/product.jpg">
+            <img src="includes/images/product.jpg">
             <h4>Product name 4</h4>
             <div class="rating">
                 <i class="fa fa-star" aria-hidden="true"></i>

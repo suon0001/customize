@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../includes/css/style.css">
+    <link rel="stylesheet" href="includes/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           class="offer-img">
 </head>
@@ -17,19 +17,19 @@
 <div class="small-container single-product">
     <div class="row">
         <div class="col-2">
-            <img src="../includes/images/temperary.jpg" width="100%">
+            <img src="includes/images/temperary.jpg" width="100%">
             <div class="small-img-row">
                 <div class="small-img-col">
-                    <img src="../includes/images/temperary.jpg" alt="">
+                    <img src="includes/images/temperary.jpg" alt="">
                 </div>
                 <div class="small-img-col">
-                    <img src="../includes/images/temperary.jpg" alt="">
+                    <img src="includes/images/temperary.jpg" alt="">
                 </div>
                 <div class="small-img-col">
-                    <img src="../includes/images/temperary.jpg" alt="">
+                    <img src="includes/images/temperary.jpg" alt="">
                 </div>
                 <div class="small-img-col">
-                    <img src="../includes/images/temperary.jpg" alt="">
+                    <img src="includes/images/temperary.jpg" alt="">
                 </div>
             </div>
 
@@ -58,7 +58,7 @@
 <div class="small-container">
     <div class="row">
         <div class="col-4">
-            <img src="../includes/images/product.jpg" width="100%">
+            <img src="includes/images/product.jpg" width="100%">
             <h4>Product name 1</h4>
             <div class="rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="col-4">
-            <img src="../includes/images/product.jpg" width="100%">
+            <img src="includes/images/product.jpg" width="100%">
             <h4>Product name 2</h4>
             <div class="rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -82,7 +82,7 @@
             </div>
         </div>
         <div class="col-4">
-            <img src="../includes/images/product.jpg" width="100%">
+            <img src="includes/images/product.jpg" width="100%">
             <h4>Product name 3</h4>
             <div class="rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -94,7 +94,7 @@
             </div>
         </div>
         <div class="col-4">
-            <img src="../includes/images/product.jpg" width="100%">
+            <img src="includes/images/product.jpg" width="100%">
             <h4>Product name 3</h4>
             <div class="rating">
                 <i class="fa fa-star" aria-hidden="true"></i>

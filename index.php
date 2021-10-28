@@ -4,7 +4,7 @@ session_start();
 include("./includes/db/connection.php");
 include("includes/function.php");
 
-//$user_data = check_login($con);
+
 
 ?>
 
@@ -20,12 +20,6 @@ include("includes/function.php");
 </head>
 <body>
 
-<?php include("./view/navigation.php"); ?>
-
-<?php include("./view/home.php"); ?>
-
-<?php include("./view/footer.php"); ?>
-
-    
+<?php include("home.php"); ?>
 </body>
 </html>

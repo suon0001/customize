@@ -1,22 +1,22 @@
 <?php
 
 session_start();
-require_once("../includes/db/connection.php");
-require_once("../includes/function.php");
+require_once("./includes/db/connection.php");
+require_once("./includes/function.php");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $user_name = $_POST['username'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
     if (!empty($username) && !empty($password) && !is_numeric($username)) {
 
         //save to database
         $user_id = random_num(20);
-        $query = "INSERT INTO login (login_id, username, password) VALUES ('$login_id', '$username', '$password')";
+        $query = "INSERT INTO login (username, password) VALUES ('$username', '$password')";
         mysqli_query($con, $query);
 
-        header("Location: login.php");
+        //header("Location: login.php");
         die;
     } else {
         echo "Please into some valid information!";
@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <div id="box">
 
-    <div style="font-size: 20px; margin: 10px;">Login</div>
+    <div style="font-size: 20px; margin: 10px;">Signup</div>
     <form method="post">
-        <input id="text" type="text" name="Username"> <br><br>
+        <input id="text" type="text" name="username"> <br><br>
         <input id="text" type="password" name="password"><br><br>
 
         <input id="button" type="submit" value="signup"><br><br>

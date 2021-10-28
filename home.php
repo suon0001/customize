@@ -1,3 +1,5 @@
+<?php include "navigation.php" ?>
+
 <div class="header">
     <div class="container">
         <div class="row">
@@ -212,3 +214,5 @@
         </div>
     </div>
 </div>
+
+<?php include "footer.php" ?>

@@ -1,34 +1,38 @@
 <?php
 
-echo $_POST["Username"];
-//echo $_POST["password"];
+
+require_once("../db/connection.php");
+
+include("../function.php");
+
+$user_data = check_login($con);
 
 // check med database
 
 
-if (isset($_POST['submit'])) { // Form has been submitted.
-    $username = trim(mysqli_real_escape_string($con, $_POST['user']));
-    $password = trim(mysqli_real_escape_string($con,$_POST['pass']));
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
 
-    $query = "SELECT id, username, pasword FROM users WHERE user = '{$username}' LIMIT 1";
-    $result = mysqli_query($connection, $query);
+    if (!empty($uaername) && !empty($password)) {
+        $query = "SELECT * FROM `login_id` WHERE username = '$username' LIMIT 1";
+        $result = mysqli_query($con, $query);
 
-    if (mysqli_num_rows($result) == 1) {
-        // username/password authenticated
-        // and only 1 match
-        $found_user = mysqli_fetch_array($result);
-        if(password_verify($password, $found_user['pass'])){
-            $_SESSION['user_id'] = $found_user['id'];
-            $_SESSION['user'] = $found_user['user'];
-            redirect_to("frontpage.php");
-        } else {
-            // username/password combo was not found in the database
-            $message = "Username/password combination incorrect.<br />
-					Please make sure your caps lock key is off and try again.";
-        }}
-} else { // Form has not been submitted.
-    if (isset($_GET['logout']) && $_GET['logout'] == 1) {
-        $message = "You are now logged out.";
+        if ($result) {
+            if ($result && mysqli_num_rows($result) > 0) {
+                $user_data = mysqli_fetch_assoc($result);
+                if (password_verify($password, $user_data['password'])) {
+                    $_SESSION['login_id'] = $user_data['login_id'];
+                    header("Location: ?" . $user_data['login_id']);
+                    echo $_POST["username"];
+                    die;
+                } else {
+                    echo "<div style='background-color: red; color: white; text-align: center; margin: 0 auto; padding: 0.5em; font-size: .9vw; top: 750px; position: fixed' >Wrong e-mail or password</div>";
+                }
+            }
+        }
+        echo "<div style='background-color: red; color: white; text-align: center; margin: 0 auto; padding: 0.5em; font-size: .9vw; top: 750px; position: fixed' >Wrong e-mail or password</div>";
+    } else {
+        echo "<div style='background-color: red; color: white; text-align: center; margin: 0 auto; padding: 0.5em; font-size: .9vw; top: 750px; position: fixed' >Please fill out everything</div>";
     }
 }
-if (!empty($message)) {echo "<p>" . $message . "</p>";} ?>

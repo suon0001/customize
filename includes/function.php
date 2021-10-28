@@ -1,18 +1,11 @@
 <?php
 
-function redirect_to($location)
-{
-    header("Location: {$location}");
-    exit;
-}
-
-
 function check_login($con)
 {
 
-    if (isset($_SESSION['LoginID'])) {
-        $id =$_SESSION['LoginID'];
-        $query = "SELECT * FROM login WHERE LoginID =  '$id' LIMIT 1";
+    if (isset($_SESSION['login_id'])) {
+        $username =$_SESSION['username'];
+        $query = "SELECT * FROM login WHERE username =  '$username' LIMIT 1";
 
         $result = mysqli_query($con, $query);
         if($result && mysqli_num_rows($result) > 0){
@@ -21,9 +14,7 @@ function check_login($con)
         }
     }
 
-    //redirect to login
-    header("Location: login/login.php");
-    die;
+
 }
 
 function random_num($length)
