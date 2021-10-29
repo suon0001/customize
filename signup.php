@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require_once("./includes/db/connection.php");
-require_once("./includes/function.php");
+require ("./includes/db/connection.php");
+require ("./includes/function.php");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 

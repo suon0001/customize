@@ -32,19 +32,12 @@ CREATE TABLE User
 ) ENGINE = InnoDB;
 
 
-CREATE TABLE Customize
-(
-    custom_id INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    color    VARCHAR(255) NULL,
-    part    VARCHAR(255) NULL
-) ENGINE = InnoDB;
-
 CREATE TABLE Product
 (
     product_id   INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title       VARCHAR(255) NULL,
-    product_type VARCHAR(255) NULL,
-    price       VARCHAR(20),
-    custom_id    INT          NOT NULL,
-    FOREIGN KEY (custom_id) REFERENCES Customize (custom_id)
+    description VARCHAR(255) NULL,
+    type VARCHAR(100) NULL,
+    color VARCHAR(50) NULL,
+    price       VARCHAR(20)
 ) ENGINE = InnoDB;

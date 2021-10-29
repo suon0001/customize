@@ -1,6 +1,16 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+include "navigation.php";
+include "./includes/db/connection.php";
+
+$productList = $_SERVER['QUERY_STRING'];
+
+$query ="SELECT * FROM 'product' WHERE product_id = $productList"
 
 
-<?php include "navigation.php" ?>
+?>
 <div class="row row-2">
     <h2>All Products</h2>
     <select name="" id="categories">
