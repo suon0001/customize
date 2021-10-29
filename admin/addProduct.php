@@ -77,7 +77,12 @@ if (isset($_POST['submit'])) {
         <input type="text" name="description"> <br> <br>
 
         <label for="type">Type</label>
-        <input type="text" name="type"> <br> <br>
+        <select name="color">
+            <option value="">--- Choose a color ---</option>
+            <option value="red">Black</option>
+            <option value="green">White</option>
+            <option value="blue">Gray</option>
+        </select> <br> <br>
 
         <label for="color">Color</label>
         <input type="text" name="color"> <br> <br>
@@ -89,6 +94,7 @@ if (isset($_POST['submit'])) {
         <input type="file" name="image" value=""/>
 
         <input type="submit" name="submit" value="Add">
+        <a href="productView.php"><input type="button" name="return" value="Return"></a>
     </form>
 </section>
 

@@ -15,7 +15,7 @@ $result = $con->query($sql);
 
 <?php while ($row = $result->fetch_assoc()) { ?>
     <tr>
-        <td style="font-weight: bold;">#<?php echo $row['productID'] ?></td>
+        <td>#<?php echo $row['productID'] ?></td>
         <td><?php echo $row['title'] ?></td>
         <td><?php echo $row['description'] ?></td>
         <td><?php echo $row['type'] ?></td>
@@ -49,13 +49,13 @@ $result = $con->query($sql);
 <table>
     <thead>
     <tr>
-        <th scope="col">#</th>
+        <th scope="col">ID</th>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
         <th scope="col">Type</th>
         <th scope="col">Color</th>
-        <th scope="col">Image</th>
         <th scope="col">Price</th>
+        <th scope="col">Image</th>
     </tr>
     </thead>
 </table>
