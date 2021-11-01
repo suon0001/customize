@@ -46,7 +46,7 @@ $result = mysqli_query($con, $query)
             <td><?php echo $type ?></td>
             <td><?php echo $color ?></td>
             <td><?php echo $price ?></td>
-            <td><a href="edit.php?GetID=<?php echo $product_id ?>">Edit</a></td>
+            <td><a href="editProduct.php?GetID=<?php echo $product_id ?>">Edit</a></td>
             <td><a href="#">Delete</a></td>
 
         </tr>
