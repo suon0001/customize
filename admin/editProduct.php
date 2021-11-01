@@ -27,25 +27,25 @@ while($row=mysqli_fetch_assoc($result)) {
 </head>
 <body>
 
-<h2>Add a new product</h2>
+<h2>Edit product</h2>
 <form action="../includes/controller/addItems.php" method="post">
-    <label for="title">Title</label>
+    <label for="title">Title</label><br>
     <input type="text" name="title" value="<?php echo $product_id?>"> <br> <br>
 
-    <label for="description">Description</label>
-    <input type="text" name="description" value="<?php echo $description?>"> <br> <br>
+    <label for="description">Description</label> <br>
+    <input type="text" name="type" value="<?php echo $description?>"> <br> <br> <br>
 
-    <label for="type">Type</label>
+    <label for="type">Type</label><br>
     <input type="text" name="type" value="<?php echo $type?>"> <br> <br>
 
-    <label for="color">Color</label>
+    <label for="color">Color</label><br>
     <input type="text" name="color" value="<?php echo $color?>"> <br> <br>
 
-    <label for="title">Price</label>
+    <label for="title">Price</label><br>
     <input type="number" name="price" value="<?php echo $price?>"> <br> <br>
 
     <input type="submit" name="submit" value="Add">
-    <a href="productView.php"><input type="button" name="cancel" value="Cancel"></a>
+    <a href="viewProduct.php"><input type="button" name="cancel" value="Cancel"></a>
 </form>
 
 

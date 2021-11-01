@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require ("./includes/db/connection.php");
-require ("./includes/function.php");
+require("./includes/db/connection.php");
+require("./includes/function.php");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -24,16 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 ?>
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Signup</title>
 </head>
 <body>
-
-
+<?php include "navigation.php" ?><br>
 <div id="box">
-
     <div style="font-size: 20px; margin: 10px;">Signup</div>
     <form method="post">
         <input id="text" type="text" name="username"> <br><br>
@@ -73,3 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 </body>
 </html>
+
+
+
+
+

@@ -1,8 +1,10 @@
 <?php
 require_once("../db/connection.php");
 if (isset($_POST['submit'])) {
-    if (empty($_POST['title']) || empty($_POST['description']) || empty($_POST['type']) || empty($_POST['color']) || empty($_POST['price'])) {
-        echo 'Please Fill in the blanks';
+    if (empty($_POST['title']) || empty($_POST['description']) ||
+        empty($_POST['type']) || empty($_POST['color']) ||
+        empty($_POST['price'])) {
+        echo 'Please fill in the blanks';
     } else {
         $title = $_POST['title'];
         $description = $_POST['description'];
@@ -14,7 +16,7 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($con, $query);
 
         if ($result) {
-            header("Location: ../admin/productView.php");
+            header("Location: ../admin/viewProduct.php");
         } else {
             echo 'Please check your query';
         }

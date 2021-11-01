@@ -1,42 +1,21 @@
 <?php
-require_once("./includes/db/connection.php");
-
-include("./includes/function.php");
-
-$user_data = check_login($con);
-
-// check med database
-
-
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
-
-    if (!empty($uaername) && !empty($password)) {
-        $query = "SELECT * FROM login WHERE username = '$username' LIMIT 1";
-        $result = mysqli_query($con, $query);
-
-        if ($result) {
-            if ($result && mysqli_num_rows($result) > 0) {
-                $user_data = mysqli_fetch_assoc($result);
-                if (password_verify($password, $user_data['password'])) {
-                    $_SESSION['login_id'] = $user_data['login_id'];
-
-                    die;
-                } else {
-                    header("Location: ?" . user_data['login_id']);
-                    echo "<div style='background-color: red; color: white; text-align: center; margin: 0 auto; padding: 0.5em; font-size: .9vw; top: 750px; position: fixed' >Wrong e-mail or password</div>";
-                }
-            }
-        }
-    }
-}
 
 ?>
-<div id="box">
 
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<body>
+<?php include "navigation.php" ?> <br>
+<div id="box">
     <div style="font-size: 20px; margin: 10px;">Login</div>
-    <form method="post">
+    <form action="includes/controller/loginController.php" method="post">
         <input id="text" type="text" name="username"> <br><br>
         <input id="text" type="password" name="password"><br><br>
 
@@ -47,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </div>
 
 <style>
-    #text{
+    #text {
         height: 25px;
         border-radius: 5px;
         padding: 4px;
@@ -55,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         width: 100%;
     }
 
-    #button{
+    #button {
         padding: 10px;
         width: 100px;
         color: white;
@@ -63,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         border: none;
     }
 
-    #box{
+    #box {
         background-color: grey;
         margin: auto;
         width: 300px;
@@ -71,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
 </style>
-
 
 
 </body>
