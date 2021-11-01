@@ -16,7 +16,9 @@ $result = mysqli_query($con, $query)
 </head>
 <body>
 <h1>Product View</h1>
-<a href="addProduct.php">Add new product</a>
+<form action="addProduct.php" method="post">
+    <input class="button" type="submit" value="Add">
+</form>
 <table>
     <tr>
         <th scope="col">ID</th>
@@ -45,7 +47,7 @@ $result = mysqli_query($con, $query)
             <td><?php echo $description ?></td>
             <td><?php echo $type ?></td>
             <td><?php echo $color ?></td>
-            <td><?php echo '$'.$price ?></td>
+            <td><?php echo '$' . $price ?></td>
             <td><a href="editProduct.php?GetID=<?php echo $product_id ?>">Edit</a></td>
             <td><a href="delete.php?Del=<?php echo $product_id ?>">Delete</a></td>
 
@@ -94,10 +96,6 @@ $result = mysqli_query($con, $query)
     }
 
 
-    .edit {
-        padding: 10px;
-    }
-
     .edit input[type='submit'] {
         margin-top: 10px;
         text-align: center;
@@ -109,6 +107,20 @@ $result = mysqli_query($con, $query)
         margin-top: 10px;
         text-align: center;
         background-color: lightgray;
+    }
+
+    .button {
+        font: inherit;
+        line-height: normal;
+        cursor: pointer;
+        background: #789bbe;
+        color: white;
+        font-weight: bold;
+        width: auto;
+        margin-left: auto;
+        font-weight: bold;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 </style>
 </body>

@@ -48,6 +48,19 @@ while($row=mysqli_fetch_assoc($result)) {
     <a href="viewProduct.php"><input type="button" name="cancel" value="Cancel"></a>
 </form>
 
+<style>
+    form {
+        justify-items: center;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+
+</style>
 
 </body>
 </html>

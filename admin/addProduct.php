@@ -37,12 +37,17 @@
 
 <style>
     form {
-        background-color: #2d2d2d;
         justify-items: center;
         padding: 12px 20px;
         margin: 8px 0;
         box-sizing: border-box;
     }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+
+
 </style>
 
 </body>
