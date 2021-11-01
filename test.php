@@ -1,30 +1,4 @@
-<?php
-
-session_start();
-require("./includes/db/connection.php");
-require("./includes/function.php");
-include "navigation.php";
-
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    if (!empty($username) && !empty($password) && !is_numeric($username)) {
-
-        //save to database
-        $user_id = random_num(20);
-        $query = "INSERT INTO login (username, password) VALUES ('$username', '$password')";
-        mysqli_query($con, $query);
-
-        header("Location: login.php");
-        die;
-    } else {
-        echo "Please into some valid information!";
-    }
-}
-
-?>
+<?php include "navigation.php" ?> <br>
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,24 +6,34 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Signup</title>
+    <title>Test</title>
 </head>
 <body>
 
 <div class="container">
-    <form method="post">
-        <h4>SIGNUP</h4> <br>
+    <form action="includes/controller/loginController.php" method="post">
+        <h4>Account</h4> <br>
         <div class="row">
-            <input type="name" name="username">
-            <input type="password" name="password">
-            <input id="button" type="submit" value="Signup"><br>
-            <a href="login.php">Login</a><br><br>
+
+
+            <input type="name" placeholder="Username">
+
+            <input type="password" placeholder="Password">
+
+
+            <input id="button" type="submit" value="Login"><br>
+
+            <a href="signup.php">Make a account</a><br><br>
             <a href="">Forgot password?</a><br><br>
         </div>
-    </form>
+</div>
+
+
+</form>
 </div>
 
 <style>
+    /* 64ac15 */
 
     body {
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -62,7 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         color: #789bbe;
     }
 
-    input {
+    input,
+    select option,
+    select {
         width: 100%;
         padding: 10px;
         margin: 5px;
@@ -73,10 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
 
+
     .container {
         max-width: 38em;
         padding: 1em 3em 2em 3em;
-        margin: 10px auto;
+        margin: 0 auto;
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
@@ -85,10 +72,3 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </style>
 </body>
 </html>
-
-
-
-
-
-
-

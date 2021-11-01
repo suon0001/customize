@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #e3e3e3;
+}
+
 
 /*navigation*/
 
@@ -40,7 +44,7 @@ p {
 }
 
 a:hover {
-    background-color: #111;
+    background-color: #4c74af;
 }
 
 .header {

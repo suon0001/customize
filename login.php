@@ -1,7 +1,10 @@
 <?php
+session_start();
+require("./includes/db/connection.php");
+require("./includes/function.php");
+include "navigation.php"
 
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,48 +12,53 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Test</title>
 </head>
 <body>
-<?php include "navigation.php" ?> <br>
-<div id="box">
-    <div style="font-size: 20px; margin: 10px;">Login</div>
+<div class="container">
     <form action="includes/controller/loginController.php" method="post">
-        <input id="text" type="text" name="username"> <br><br>
-        <input id="text" type="password" name="password"><br><br>
-
-        <input id="button" type="submit" value="Login"><br><br>
-
-        <a href="signup.php">SIGNUP</a><br><br>
+        <h4>ACCOUNT</h4> <br>
+        <div class="row">
+            <input type="name" name="username">
+            <input type="password" name="password">
+            <input id="button" type="submit" value="Login"><br>
+            <a href="signup.php">Make a account</a><br><br>
+            <a href="">Forgot password?</a><br><br>
+        </div>
     </form>
 </div>
 
 <style>
-    #text {
-        height: 25px;
-        border-radius: 5px;
-        padding: 4px;
-        border: solid thin #aaa;
+    body {
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        color: #b9b9b9;
+    }
+
+    h4 {
+        color: #789bbe;
+    }
+
+    input {
         width: 100%;
-    }
-
-    #button {
         padding: 10px;
-        width: 100px;
-        color: white;
-        background-color: lightblue;
-        border: none;
+        margin: 5px;
+        line-height: 1.4;
+        background-color: #f9f9f9;
+        border: 1px solid #e5e5e5;
+        border-radius: 3px;
     }
 
-    #box {
-        background-color: grey;
-        margin: auto;
-        width: 300px;
-        padding: 20px;
+
+    .container {
+        max-width: 38em;
+        padding: 1em 3em 2em 3em;
+        margin: 10px auto;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
     }
 
 </style>
-
-
 </body>
 </html>

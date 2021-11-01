@@ -35,6 +35,15 @@
     <a href="viewProduct.php"><input type="button" name="cancel" value="Cancel"></a>
 </form>
 
+<style>
+    form {
+        background-color: #2d2d2d;
+        justify-items: center;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+</style>
 
 </body>
 </html>
