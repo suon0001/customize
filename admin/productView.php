@@ -1,53 +1,23 @@
 <?php
-
 include('../includes/db/connection.php');
 
-$sql = "SELECT * FROM `product`";
-$result = $con->query($sql);
-
+$query = "SELECT * FROM product";
+$result = mysqli_query($con, $query)
 ?>
 
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Product View</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View product</title>
 </head>
-
-<?php while ($row = $result->fetch_assoc()) { ?>
-    <tr>
-        <td>#<?php echo $row['productID'] ?></td>
-        <td><?php echo $row['title'] ?></td>
-        <td><?php echo $row['description'] ?></td>
-        <td><?php echo $row['type'] ?></td>
-        <td><?php echo $row['color'] ?></td>
-        <td><?php echo $row['price'] ?></td>
-        <td>
-            <?php
-            echo "<img src=" . '../includes/images' . $row['productImage'] . " style='width: 30%;' />";
-            ?>
-        </td>
-        <td>
-            <span style="font-size: 1.3em;">Product ID: <?php echo $row['product_id'] . " "; ?></span>
-            <form action="deleteProduct.php" method="POST">
-                <div class="edit">
-                    <input type="hidden" name="id_to_delete" value="<?php echo $row['product_id']; ?>">
-                    <input type="hidden" name="id_to_update" value="<?php echo $row['product_id']; ?>">
-                    <input type="submit" name="update" value="Update" ;">
-                    <input type="submit" name="delete" value="Delete" ;">
-                </div>
-            </form>
-            <br>
-        </td>
-    </tr>
-<?php } ?>
-
-
 <body>
-<h1>All Products</h1>
-<a href="addProduct.php">CREATE A NEW PRODUCT</i></a>
-
+<h1>Product View</h1>
+<a href="addProduct.php">Add new product</a>
 <table>
-    <thead>
     <tr>
         <th scope="col">ID</th>
         <th scope="col">Title</th>
@@ -55,10 +25,39 @@ $result = $con->query($sql);
         <th scope="col">Type</th>
         <th scope="col">Color</th>
         <th scope="col">Price</th>
-        <th scope="col">Image</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
     </tr>
-    </thead>
+
+    <?php
+    while ($row = mysqli_fetch_assoc($result)) {
+        $product_id = $row['product_id'];
+        $title = $row['title'];
+        $description = $row['description'];
+        $type = $row['type'];
+        $color = $row['color'];
+        $price = $row['price'];
+        ?>
+
+        <tr>
+            <td><?php echo $product_id ?></td>
+            <td><?php echo $title ?></td>
+            <td><?php echo $description ?></td>
+            <td><?php echo $type ?></td>
+            <td><?php echo $color ?></td>
+            <td><?php echo $price ?></td>
+            <td><a href="edit.php?GetID=<?php echo $product_id ?>">Edit</a></td>
+            <td><a href="#">Delete</a></td>
+
+        </tr>
+
+        <?php
+    }
+    ?>
+
 </table>
+
+
 <style>
 
     * {
@@ -107,9 +106,10 @@ $result = $con->query($sql);
     }
 
     .edit input[type='submit']:hover {
-        margin-top: 1em;
+        margin-top: 10px;
         text-align: center;
         background-color: lightgray;
     }
 </style>
 </body>
+</html>
