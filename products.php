@@ -5,9 +5,9 @@ if (!isset($_SESSION)) {
 include "navigation.php";
 include "./includes/db/connection.php";
 
-$productList = $_SERVER['QUERY_STRING'];
+$product = $_SERVER['QUERY_STRING'];
 
-$query = "SELECT * FROM product WHERE product_id = $productList";
+$query = "SELECT * FROM product WHERE product_id = $product";
 $result = mysqli_query($con, $query);
 
 
@@ -45,7 +45,7 @@ $result = mysqli_query($con, $query);
                 <i class="fa fa-star" aria - hidden="true"></i>
                 <i class="fa fa-star-o" aria - hidden="true"></i>
                 <i class="fa fa-star-o" aria - hidden="true"></i>
-                <p> price</p>
+                <p> <?php echo $row['price']; ?></p>
             </div>
         </div>
     </div>

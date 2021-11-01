@@ -47,7 +47,7 @@ $result = mysqli_query($con, $query)
             <td><?php echo $color ?></td>
             <td><?php echo '$'.$price ?></td>
             <td><a href="editProduct.php?GetID=<?php echo $product_id ?>">Edit</a></td>
-            <td><a href="#">Delete</a></td>
+            <td><a href="delete.php?Del=<?php echo $product_id ?>">Delete</a></td>
 
         </tr>
 
