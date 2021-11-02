@@ -1,15 +1,16 @@
 <?php
 include('../db/connection.php');
 
-if (isset($_GET['Del'])) {
-
-    $product_id = $_GET['Del'];
-    $query = "DELETE FROM product WHERE product_id = '".$product_id."'";
+    $id_to_delete = $_SERVER['QUERY_STRING'];
+    $query = "DELETE FROM `product` WHERE product_id = $id_to_delete";
     $result = mysqli_query($con, $query);
 
-    if ($result) {
-        header("Location: ./admin/viewProduct.php");
-    } else {
-        echo 'Please check your query';
-    }
-}
+   if ($result) {
+       header("Location: ?delete successfully");
+   }else {
+       'query error: '.mysqli_error($con);
+   }
+   header("Location: ../../admin/viewProduct.php");
+
+
+

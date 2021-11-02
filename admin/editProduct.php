@@ -28,7 +28,7 @@ while($row=mysqli_fetch_assoc($result)) {
 <body>
 
 <h2>Edit product</h2>
-<form action="../includes/controller/update.php?ID=<?php echo $product_id ?>" method="post">
+<form action="../includes/controller/update.php?<?php echo $product_id ?>" method="post">
     <label for="title">Title</label><br>
     <input type="text" name="title" value="<?php echo $title?>"> <br> <br>
 

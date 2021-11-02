@@ -1,8 +1,8 @@
 <?php
 include('../includes/db/connection.php');
 
-$query = "SELECT * FROM product";
-$result = mysqli_query($con, $query)
+$query = "SELECT * FROM `product`";
+$result = mysqli_query($con, $query);
 ?>
 
 <!doctype html>
@@ -12,6 +12,7 @@ $result = mysqli_query($con, $query)
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>View product</title>
 </head>
 <body>
@@ -48,8 +49,8 @@ $result = mysqli_query($con, $query)
             <td><?php echo $type ?></td>
             <td><?php echo $color ?></td>
             <td><?php echo '$' . $price ?></td>
-            <td><a href="editProduct.php?GetID=<?php echo $product_id ?>">Edit</a></td>
-            <td><a href="delete.php?Del=<?php echo $product_id ?>">Delete</a></td>
+            <td><a href="editProduct.php?GetID=<?php echo $product_id ?>"><i style="color:green" class="fa">&#10000;</i></a></td>
+            <td><a href="../includes/controller/delete.php?<?php echo $product_id ?>"><i style="color:red" class="fa">&#9747;</i></a></td>
 
         </tr>
 

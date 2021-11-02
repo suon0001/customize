@@ -12,15 +12,15 @@ if (isset($_POST['submit'])) {
         $color = $_POST['color'];
         $price = $_POST['price'];
 
-        $query = "INSERT INTO product(title, describtion, type, color, price) VALUES('$title', '$description', '$type', '$color', '$price')";
+        $query = "INSERT INTO product(title, description, type, color, price) VALUES('$title', '$description', '$type', '$color', '$price')";
         $result = mysqli_query($con, $query);
 
         if ($result) {
-            header("Location: ../admin/viewProduct.php");
+            header("Location: ../../admin/viewProduct.php");
         } else {
             echo 'Please check your query';
         }
     }
 } else {
-    header("Location: ../index.php");
+    header("Location: ../../admin/viewProduct.php");
 }
