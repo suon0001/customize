@@ -7,7 +7,7 @@ include "./includes/db/connection.php";
 
 $product = $_SERVER['QUERY_STRING'];
 
-$query = "SELECT * FROM product WHERE product_id = $product";
+$query = "SELECT * FROM product";
 $result = mysqli_query($con, $query);
 
 
@@ -34,19 +34,12 @@ $result = mysqli_query($con, $query);
 </div>
 
 <div class="small-container">
+    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
     <div class="row">
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
         <div class="col-4">
-            <img src="includes/images/product.jpg">
+            <a href="products-details.php?<?php echo $row['product_id']; ?>"> <img src="includes/images/temperary.jpg"></a>
             <h4> <?php echo $row['title']; ?></h4>
-            <div class="rating">
-                <i class="fa fa-star" aria - hidden="true"></i>
-                <i class="fa fa-star" aria - hidden="true"></i>
-                <i class="fa fa-star" aria - hidden="true"></i>
-                <i class="fa fa-star-o" aria - hidden="true"></i>
-                <i class="fa fa-star-o" aria - hidden="true"></i>
-                <p> <?php echo $row['price']; ?></p>
-            </div>
+            <p> <?php echo $row['price']; ?></p>
         </div>
     </div>
     <?php } ?>
@@ -61,6 +54,11 @@ $result = mysqli_query($con, $query);
 
 
 </div>
+<style>
+    .small-container {
+        display: flex;
+    }
+</style>
 
 <?php include("footer.php"); ?>
 </body>

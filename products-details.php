@@ -2,12 +2,13 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+$product = $_SERVER['QUERY_STRING'];
 
 include "navigation.php";
 include "./includes/db/connection.php";
 
-$query = "SELECT * FROM product";
-$result = mysqli_query($con, $query)
+$query = "SELECT * FROM product WHERE product_ID = $product";
+$result = $con->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ $result = mysqli_query($con, $query)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="includes/css/main.css">
+    <link rel="stylesheet" href="includes/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           class="offer-img">
 </head>
@@ -40,8 +41,6 @@ $result = mysqli_query($con, $query)
                         <img src="includes/images/temperary.jpg" alt="">
                     </div>
                 </div>
-
-
             </div>
 
             <div class="col-2">
