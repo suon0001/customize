@@ -7,8 +7,11 @@ include "./includes/db/connection.php";
 
 $product = $_SERVER['QUERY_STRING'];
 
-$query = "SELECT * FROM product";
+$query = "SELECT * FROM product WHERE type = 'featured'LIMIT 3";
+$query2 = "SELECT * FROM product WHERE type = 'latest' LIMIT 3";
 $result = mysqli_query($con, $query);
+$result2 = mysqli_query($con, $query2);
+
 
 ?>
 
@@ -60,77 +63,49 @@ $result = mysqli_query($con, $query);
     </div>
 </div>
 
-<!Featured products>
+<!Featured XBOX>
 
 <div class="small-container">
     <h2 class="title">Featured Products</h2>
     <div class="row">
-        <div class="col-4">
-            <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/15951/production/_117310488_16.jpg" alt="">
-            <h4>Product name 1</h4>
-            <div class="rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <p>price</p>
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <div class="col-4">
+                <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/15951/production/_117310488_16.jpg" alt="">
+                <h4><?php echo $row['title']; ?></h4>
+                <div class="rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <p>$<?php echo $row['price']; ?></p>
+                </div>
             </div>
-        </div>
-        <div class="col-4">
-            <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/15951/production/_117310488_16.jpg" alt="">
-            <h4>Product name 2</h4>
-            <div class="rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <p>price</p>
-            </div>
-        </div>
-        <div class="col-4">
-            <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/15951/production/_117310488_16.jpg" alt="">
-            <h4>Product name 3</h4>
-            <div class="rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <p>price</p>
-            </div>
-        </div>
-        <div class="col-4">
-            <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/15951/production/_117310488_16.jpg" alt="">
-            <h4>Product name 4</h4>
-            <div class="rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <p>price</p>
-            </div>
-        </div>
+        <?php } ?>
     </div>
+</div>
 </div>
 <div class="small-container">
     <h2 class="title">Latest Products</h2>
     <div class="row product-item">
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-        <div class="col-4">
-            <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/15951/production/_117310488_16.jpg" alt="">
-            <h4><?php echo $row['title']; ?></h4>
-            <div class="rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <p>$<?php echo $row['price']; ?></p>
+        <?php while ($row = mysqli_fetch_assoc($result2)) { ?>
+            <div class="col-4">
+                <div class="">
+                    <?php
+                    echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 50%;' />";
+                    ?>
+                </div>
+
+                <h4><?php echo $row['title']; ?></h4>
+                <div class="rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <p>$<?php echo $row['price']; ?></p>
+                </div>
             </div>
-        </div>
         <?php } ?>
     </div>
 </div>

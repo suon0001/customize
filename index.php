@@ -1,11 +1,5 @@
 <?php
 
-session_start();
-include("./includes/db/connection.php");
-include("includes/function.php");
-
-
-
 ?>
 
 <!DOCTYPE html>

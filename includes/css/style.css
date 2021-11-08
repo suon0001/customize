@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #e3e3e3;
+    background: #f3eded !important;
 }
 
 
@@ -256,6 +256,7 @@ select:focus {
 
 .page-btn {
     margin: 0 auto 80px;
+    display: flex;
 }
 
 .page-btn span {

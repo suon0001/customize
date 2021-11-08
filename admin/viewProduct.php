@@ -20,14 +20,21 @@ $result = mysqli_query($con, $query);
 <form action="addProduct.php" method="post">
     <input class="button" type="submit" value="Add">
 </form>
+<form action="../index.php"
+">
+<input class="button" type="submit" value="Return">
+</form>
+
 <table>
     <tr>
         <th scope="col">ID</th>
         <th scope="col">Title</th>
-        <th scope="col">Description</th>
         <th scope="col">Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
         <th scope="col">Color</th>
         <th scope="col">Price</th>
+        <th scope="col">Image</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
     </tr>
@@ -36,21 +43,31 @@ $result = mysqli_query($con, $query);
     while ($row = mysqli_fetch_assoc($result)) {
         $product_id = $row['product_id'];
         $title = $row['title'];
-        $description = $row['description'];
         $type = $row['type'];
+        $description = $row['description'];
+        $category = $row['category'];
         $color = $row['color'];
         $price = $row['price'];
+        $product_image = $row['image'];
         ?>
 
         <tr>
             <td><?php echo $product_id ?></td>
             <td><?php echo $title ?></td>
-            <td><?php echo $description ?></td>
             <td><?php echo $type ?></td>
+            <td><?php echo $description ?></td>
+            <td><?php echo $category ?></td>
             <td><?php echo $color ?></td>
             <td><?php echo '$' . $price ?></td>
-            <td><a href="editProduct.php?GetID=<?php echo $product_id ?>"><i style="color:green" class="fa">&#10000;</i></a></td>
-            <td><a href="../includes/controller/delete.php?<?php echo $product_id ?>"><i style="color:red" class="fa">&#9747;</i></a></td>
+            <td>
+                <?php
+                echo "<img src=" . '../includes/db/images/' . $row['image'] . " style='width: 30%;' />";
+                ?>
+            </td>
+            <td><a href="editProduct.php?GetID=<?php echo $product_id ?>"><i style="color:green" class="fa">&#10000;</i></a>
+            </td>
+            <td><a href="../includes/controller/delete.php?<?php echo $product_id ?>"><i style="color:red" class="fa">&#9747;</i></a>
+            </td>
 
         </tr>
 
