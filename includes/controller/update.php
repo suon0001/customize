@@ -8,6 +8,7 @@ if (isset($_POST['update'])) {
     $category = $_POST['category'];
     $color = $_POST['color'];
     $price = $_POST['price'];
+    $stock = $_POST['stock'];
 
     $filename = $_FILES["image"]["name"];
 
@@ -26,7 +27,7 @@ if (isset($_POST['update'])) {
 
 
     $query = "UPDATE `product` SET `title` ='" . $title . "', `type` ='" . $type . "', `description` ='" . $description . "', 
-    `category` ='" . $category . "', `color` ='" . $color . "', `price` ='" . $price . "', `image` ='" . $filename . "' WHERE `product_id` = '" . $product_id . "'";
+    `category` ='" . $category . "', `color` ='" . $color . "', `price` ='" . $price . "', `stock` ='" . $stock . "', `image` ='" . $filename . "' WHERE `product_id` = '" . $product_id . "'";
     $result = mysqli_query($con, $query);
 
     if ($result) {

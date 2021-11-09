@@ -49,6 +49,9 @@ $result = mysqli_query($con, $query);
         <label for="title">Price</label><br>
         <input type="number" name="price" value="<?php echo $row['price'] ?>"> <br> <br>
 
+        <label for="title">Stock</label><br>
+        <input type="number" name="stock" value="<?php echo $row['stock'] ?>"> <br> <br>
+
         <label for="image">Add image</label>
         <input type="file" name="image" id="image" value="<?php echo $row['image'] ?>" />
 

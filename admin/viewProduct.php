@@ -34,6 +34,7 @@ $result = mysqli_query($con, $query);
         <th scope="col">Category</th>
         <th scope="col">Color</th>
         <th scope="col">Price</th>
+        <th scope="col">Stock</th>
         <th scope="col">Image</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -48,6 +49,7 @@ $result = mysqli_query($con, $query);
         $category = $row['category'];
         $color = $row['color'];
         $price = $row['price'];
+        $stock = $row['stock'];
         $product_image = $row['image'];
         ?>
 
@@ -59,9 +61,10 @@ $result = mysqli_query($con, $query);
             <td><?php echo $category ?></td>
             <td><?php echo $color ?></td>
             <td><?php echo '$' . $price ?></td>
+            <td><?php echo $stock ?></td>
             <td>
                 <?php
-                echo "<img src=" . '../includes/db/images/' . $row['image'] . " style='width: 30%;' />";
+                echo "<img src=" . '../includes/db/images/' . $row['image'] . " style='width: 20%;' />";
                 ?>
             </td>
             <td><a href="editProduct.php?GetID=<?php echo $product_id ?>"><i style="color:green" class="fa">&#10000;</i></a>

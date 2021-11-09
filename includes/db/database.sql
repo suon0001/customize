@@ -48,7 +48,7 @@ CREATE TABLE Product
     category      VARCHAR(100) NULL,
     color         VARCHAR(50)  NULL,
     price         DECIMAL(8,2),
-    image BLOB         NULL,
+    image VARCHAR(255)         NULL,
     time_date     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = InnoDB;
 

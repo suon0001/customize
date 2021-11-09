@@ -7,21 +7,54 @@ include "./includes/db/connection.php";
 
 $product = $_SERVER['QUERY_STRING'];
 
-$query = "SELECT * FROM product";
+$query = "SELECT * FROM product ORDER BY product_id ASC";
 $result = mysqli_query($con, $query);
 
 
 
-if (isset($_POST['add'])) {
-    if (isset($_SESSION['cart'])) {
-        $item_array_id = array_column($_SESSION['cart'], "product_id");
+if (isset($_POST['ad_to_cart'])) {
+    if (isset($_SESSION['shopping_cart'])) {
+        $item_array_id = array_column($_SESSION['shopping_cart'], "product_id");
         print_r($item_array_id);
 
-        if (in_array($_POST['product_id'], $item_array_id)) {
-            echo "<script>alert('Product is already added in the cart')</script>";
+        if (in_array($_GET['id'], $item_array_id)) {
+            $count = count($_SESSION['shopping_cart']);
+            $item_array = array(
+              'product_id' => $_GET['id'],
+              'title' => $_POST['hidden_title'],
+              'price' => $_POST['hidden_price'],
+              'quantity' => $_POST['quantity'],
+            );
+            $_SESSION['shopping_cart'] [$count] = $item_array;
+
 
         }
+        else {
+            echo '<script>alert("item already added")</script>';
+            echo '<script>window.location="products.php"</script>';
+        }
 
+    }
+    else {
+        $item_array = array(
+            'product_id' => $_GET['id'],
+            'title' => $_POST['hidden_title'],
+            'price' => $_POST['hidden_price'],
+            'quantity' => $_POST['quantity'],
+        );
+        $_SESSION['shopping_cart'] [0] = $item_array;
+    }
+}
+
+if (isset($_GET['action'])) {
+    if($_GET['action'] == "deleted") {
+        foreach($_SESSION['shopping_cart'] as $key => $value) {
+            if($value['product_id'] == $_GET['id']) {
+                unset($_SESSION['shopping_cart'][$keys]);
+                echo '<script>alert("Item removed successfully")</script>';
+                echo '<script>window.location="products.php"</script>';
+            }
+        }
     }
 }
 
@@ -39,7 +72,7 @@ if (isset($_POST['add'])) {
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
           integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
-    <link rel="stylesheet" href="includes/css/style.css">
+    <link rel="stylesheet" href="includes/css/main.css">
     <title>Products</title>
 </head>
 <body>
@@ -49,9 +82,11 @@ if (isset($_POST['add'])) {
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
             <div class="col-md-4 col-sm-6 my-3">
                 <form action="products.php" method="post">
-                    <div class="card shadow">
+                    <div class="card">
                         <div>
-                            <img src="includes/db/images/temperary2.jpg" alt="" class="img-fluid card-img-top">
+                            <?php
+                            echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 100%;' />";
+                            ?>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['title']; ?></h5>
@@ -79,24 +114,39 @@ if (isset($_POST['add'])) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-<style>
-    img {
-        max-width: 100%;
-        height: auto;
-        background: lightblue;
-        background: radial-gradient(white 30%, lightblue 70%);
-    }
-
-    .fa-star,
-    .fa-star-half {
-        color: yellowgreen;
-        padding: 3% 0;
-    }
-
-</style>
 
 
 <?php include("footer.php"); ?>
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .price {
+        color: grey;
+        font-size: 22px;
+    }
+
+    .card button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .card button:hover {
+        opacity: 0.7;
+    }
+</style>
 </body>
 </html>
 

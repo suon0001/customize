@@ -20,37 +20,41 @@ $result2 = mysqli_query($con, $query2);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="includes/css/style.css">
+    <link rel="stylesheet" href="includes/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           class="offer-img">
 </head>
 <body>
-
 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+<main class="container">
 
-    <div class="small-container single-product">
-        <div class="row">
-            <div class="col-2">
-                <img src="includes/db/images/product.jpg" width="100%">
-            </div>
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+        <?php
+        echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 80%;' />";
+        ?>
+    </div>
 
-            <div class="col-2">
-                <h1><?php echo $row['title']; ?></h1>
-                <h4>$<?php echo $row['price']; ?></h4>
-                <select name="" id="color">
-                    <option value="">--- Choose a color ---</option>
-                    <option value="red">Blue</option>
-                    <option value="green">Red</option>
-                    <option value="blue">Green</option>
-                </select>
-                <input type="number" value="1">
-                <input type="button" class="button" value="Add to Cart">
 
-                <h3>Product Details</h3>
-                <p><?php echo $row['description']; ?></p>
-            </div>
+    <!-- Right Column -->
+    <div class="right-column">
+
+
+        <!-- Product Description -->
+        <div class="product-description">
+            <span><?php echo $row['category']; ?></span>
+
+            <h1><?php echo $row['title']; ?></h1>
+            <p><?php echo $row['description']; ?></p>
+        </div>
+
+        <!-- Product Pricing -->
+        <div class="product-price">
+            <h4>$<?php echo $row['price']; ?></h4>
+            <a href="#" class="cart-btn">Add to cart</a>
         </div>
     </div>
+</main>
 
 <?php } ?>
 
@@ -60,7 +64,9 @@ $result2 = mysqli_query($con, $query2);
     <div class="row product-item">
         <?php while ($row = mysqli_fetch_assoc($result2)) { ?>
             <div class="col-4">
-                <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/15951/production/_117310488_16.jpg" alt="">
+                <?php
+                echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 50%;' />";
+                ?>
                 <h4><?php echo $row['title']; ?></h4>
                 <div class="rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -76,7 +82,41 @@ $result2 = mysqli_query($con, $query2);
 </div></div>
 
 <?php include("footer.php"); ?>
+<style>
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+    }
 
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 15px;
+        display: flex;
+    }
+
+    .left-column {
+        width: 65%;
+        position: relative;
+    }
+
+    .right-column {
+        width: 35%;
+        margin-top: 60px;
+    }
+
+    .left-column img {
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
+
+
+
+
+</style>
 
 </body>
 </html>

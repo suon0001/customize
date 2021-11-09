@@ -25,7 +25,7 @@ if(!isset($_SESSION))
       class="offer-img">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href="includes/css/style.css">
+<link rel="stylesheet" href="includes/css/main.css">
 
 <div class="navbar">
     <div class="logo">
@@ -49,7 +49,7 @@ if(!isset($_SESSION))
             $count = count($_SESSION['cart']);
             echo "<span id=\"cart_count\" class=\"text-warning bg-light\">$count</span>";
         }else{
-            echo "<span id=\"cart_count\" class=\"text-warning bg-light\">0</span>";
+            echo "<span id=\"cart_count\">0</span>";
         }
 
         ?></a>

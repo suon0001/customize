@@ -7,10 +7,10 @@ include "./includes/db/connection.php";
 
 $product = $_SERVER['QUERY_STRING'];
 
-$query = "SELECT * FROM product WHERE type = 'featured'LIMIT 3";
-$query2 = "SELECT * FROM product WHERE type = 'latest' LIMIT 3";
-$result = mysqli_query($con, $query);
-$result2 = mysqli_query($con, $query2);
+$featured_query = "SELECT * FROM product WHERE type = 'featured'LIMIT 3";
+$latest_query = "SELECT * FROM product WHERE type = 'latest' LIMIT 3";
+$result = mysqli_query($con, $featured_query);
+$result2 = mysqli_query($con, $latest_query);
 
 
 ?>
@@ -22,7 +22,7 @@ $result2 = mysqli_query($con, $query2);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Customize</title>
 </head>
 <body>
 <div class="header">
@@ -70,7 +70,9 @@ $result2 = mysqli_query($con, $query2);
     <div class="row">
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
             <div class="col-4">
-                <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/15951/production/_117310488_16.jpg" alt="">
+                <?php
+                echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 85%;' />";
+                ?>
                 <h4><?php echo $row['title']; ?></h4>
                 <div class="rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -92,7 +94,7 @@ $result2 = mysqli_query($con, $query2);
             <div class="col-4">
                 <div class="">
                     <?php
-                    echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 50%;' />";
+                    echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 85%;' />";
                     ?>
                 </div>
 

@@ -21,22 +21,22 @@
 
     <label for="type">Device</label><br>
     <select name="type">
-        <option value="">--- Choose a Device ---</option>
-        <option value="Playstation">Playstation</option>
-        <option value="Xbox">Xbox</option>
-        <option value="Nintendo">Nintendo</option>
-        <option value="Accessories">Accessories</option>
+        <option value="">--- Choose a Type ---</option>
+        <option value="Latest">Latest</option>
+        <option value="Featured">Featured</option>
+        <option value="Recommend">Recommend</option>
     </select><br><br>
 
     <label for="description">Description</label><br>
     <input type="text" name="description"> <br> <br>
 
-    <label for="category">Type</label><br>
+    <label for="category">Category</label><br>
     <select name="category">
-        <option value="">--- Choose a type ---</option>
-        <option value="Latest">Latest</option>
-        <option value="Featured">Featured</option>
-        <option value="Recommend">Recommend</option>
+        <option value="">--- Choose a Category ---</option>
+        <option value="DYI">DYI</option>
+        <option value="Headset">Headset</option>
+        <option value="Controller">Controller</option>
+        <option value="Accessories">Accessories</option>
     </select><br><br>
 
     <label for="color">Color</label><br>
@@ -44,6 +44,9 @@
 
     <label for="title">Price</label><br>
     <input type="number" name="price"> <br> <br>
+
+    <label for="title">Stock</label><br>
+    <input type="number" name="stock"> <br> <br>
 
     <label for="image">Add image</label>
     <input type="file" name="image" id="image" value="" />

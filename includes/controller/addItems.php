@@ -4,7 +4,7 @@ require_once("../db/connection.php");
 if (isset($_POST['submit'])) {
     if (empty($_POST['title']) || empty($_POST['type']) || empty($_POST['description']) ||
         empty($_POST['category']) || empty($_POST['color']) ||
-        empty($_POST['price'])) {
+        empty($_POST['price'])|| empty($_POST['stock'])) {
         echo 'Please fill in the blanks';
     } else {
 
@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
         $category = $_POST['category'];
         $color = $_POST['color'];
         $price = $_POST['price'];
+        $stock = $_POST['stock'];
 
         $filename = $_FILES["image"]["name"];
 
@@ -31,8 +32,8 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    $query = "INSERT INTO product(title, `type`, description, category, color , price, image) 
-                        VALUES ('$title', '$type', '$description', '$category','$color',  '$price', '$filename')";
+    $query = "INSERT INTO product(title, `type`, description, category, color , price, stock, image) 
+                        VALUES ('$title', '$type', '$description', '$category','$color',  '$price', '$stock', '$filename')";
     $result = mysqli_query($con, $query);
 
     if ($result) {
