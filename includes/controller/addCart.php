@@ -1,32 +1,15 @@
 <?php
 
-if (isset($_POST['add'])) {
-print_r($_POST['product_id']);
-    if (isset($_SESSION['cart'])) {
-
-        $item_array_id = array_column($_SESSION['cart'], "product_id");
-
-        if (in_array($_POST['product_id'], $item_array_id)) {
-            echo "<script>alert('Product is already added in the cart..!')</script>";
-            echo "<script>window.location = 'products.php'</script>";
-        } else {
-
-            $count = count($_SESSION['cart']);
-            $item_array = array(
-                'product_id' => $_POST['product_id']
-            );
-
-            $_SESSION['cart'][$count] = $item_array;
-        }
-
-    } else {
-
-        $item_array = array(
-            'product_id' => $_POST['product_id']
-        );
-
-// Create new session variable
-        $_SESSION['cart'][0] = $item_array;
-        print_r($_SESSION['cart']);
-    }
+if (!isset($_SESSION)) {
+    session_start();
 }
+
+$chosenProduct = $_SERVER['QUERY_STRING'];
+
+if (empty($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+
+}
+    array_push($_SESSION['cart'], $chosenProduct);
+
+    header("Location: ../../products.php");

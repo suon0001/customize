@@ -34,7 +34,6 @@ if(!isset($_SESSION))
     <nav>
         <ul id="MenuItems">
             <li><a href="home.php">HOME</a></li>
-            <li><a href="">NEWS</a></li>
             <li><a href="products.php">PRODUCTS</a></li>
             <li><a href="">CUSTOMIZE</a></li>
             <li><a href=contact.php>CONTACT</a></li>
@@ -47,7 +46,7 @@ if(!isset($_SESSION))
 
         if (isset($_SESSION['cart'])){
             $count = count($_SESSION['cart']);
-            echo "<span id=\"cart_count\" class=\"text-warning bg-light\">$count</span>";
+            echo "<span id=\"cart_count\" >$count</span>";
         }else{
             echo "<span id=\"cart_count\">0</span>";
         }

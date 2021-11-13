@@ -28,7 +28,6 @@ $result2 = mysqli_query($con, $query2);
 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 <main class="container">
 
-    <!-- Left Column / Headphones Image -->
     <div class="left-column">
         <?php
         echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 80%;' />";
@@ -36,11 +35,8 @@ $result2 = mysqli_query($con, $query2);
     </div>
 
 
-    <!-- Right Column -->
     <div class="right-column">
 
-
-        <!-- Product Description -->
         <div class="product-description">
             <span><?php echo $row['category']; ?></span>
 
@@ -48,7 +44,6 @@ $result2 = mysqli_query($con, $query2);
             <p><?php echo $row['description']; ?></p>
         </div>
 
-        <!-- Product Pricing -->
         <div class="product-price">
             <h4>$<?php echo $row['price']; ?></h4>
             <a href="#" class="cart-btn">Add to cart</a>

@@ -12,7 +12,7 @@ $result = mysqli_query($con, $query);
 
 
 
-if (isset($_POST['ad_to_cart'])) {
+if (isset($_POST['add_to_cart'])) {
     if (isset($_SESSION['shopping_cart'])) {
         $item_array_id = array_column($_SESSION['shopping_cart'], "product_id");
         print_r($item_array_id);
@@ -102,8 +102,7 @@ if (isset($_GET['action'])) {
                             <small><s class="text-secondary">$519</s></small>
                             <h5 class="price">$<?php echo $row['price']; ?></h5>
                             <button class="btn btn-warning my-1"><a href="products-details.php?<?php echo $row['product_id']; ?>">More Details</a></button>
-                            <?php echo "<button type=\"submit\" class=\"btn btn-warning my-1\" name=\"add\">Add to Cart <i class=\"fa fa-shopping-cart\"></i></button>
-                             <input type='hidden' name='product_id' value='$product'>" ?>
+                            <a href="includes/controller/addCart.php?<?php echo $row['product_id']; ?>">Add to Cart</a>
                         </div>
                     </div>
                 </form>

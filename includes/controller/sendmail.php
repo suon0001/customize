@@ -1,9 +1,9 @@
 <?php
 $myMail = "suon000@easv.dk";
-$name = $_POST['name'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
-$msg = $_POST['message'];
+$name = htmlspecialchars($_POST['name']);
+$email = htmlspecialchars($_POST['email']);
+$phone = htmlspecialchars($_POST['phone']);
+$msg = htmlspecialchars($_POST['message']);
 $regexp = "/^[^0-9][A-z0-9_-]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_-]+)*[.][A-z]{2,4}$/";
 
 if (!preg_match($regexp, $_POST['email'])) {

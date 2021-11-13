@@ -1,15 +1,16 @@
+
 <?php
 if(!isset($_SESSION))
 {
     session_start();
 }
 
-$cartProduct = $_SERVER['QUERY_STRING'];
-$cart = $_SESSION['cart'];
+$chosenProduct = $_SERVER['QUERY_STRING'];
 
-if (in_array($cartProduct, $cart)) {
-    unset($cartProduct);
+$key = array_search($chosenProduct, $_SESSION['cart']);
+
+if ($key !== FALSE) {
+    unset($_SESSION['cart'][$key]);
 }
 
-
-header("Location: cart.php");
+header("Location: ../../cart.php");

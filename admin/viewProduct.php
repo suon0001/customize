@@ -1,5 +1,9 @@
 <?php
 include('../includes/db/connection.php');
+include("../includes/function.php");
+
+$user_data = check_login($con);
+$currentUserID = $user_data['login_id'];
 
 $query = "SELECT * FROM `product`";
 $result = mysqli_query($con, $query);
