@@ -101,9 +101,14 @@ require_once('navigation.php');
                 <?php } ?>
 
             </div>
+            <input  type="button" value="check out">
         </div>
+
     </div>
+
 </div>
+
+
 <style>
 
 </style>

@@ -1,4 +1,9 @@
-<?php include "navigation.php" ?>
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+include "navigation.php" ?>
 <!doctype html>
 <html lang="en">
 <head>
