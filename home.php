@@ -25,25 +25,11 @@ $result2 = mysqli_query($con, $latest_query);
     <title>Customize</title>
 </head>
 <body>
-<div class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col-2">
-                <h1>Customize your <br> own gaming equipment!</h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. <br>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex
-                    ea commodo consequat."</p> <br>
-                <input type="button" class="button" value="Explore more">
-            </div>
-            <div class="col-2">
-                <img src="images/cotroller.png" alt="">
-            </div>
-        </div>
-    </div>
-</div>
+<section class="header">
+    <h1>CUSTOMIZE</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br> incididunt ut labore et dolore magna aliqua.</p>
+    <a class="btn-bgstroke">More info</a>
+</section>
 
 <h2 class="title">Featured Categories</h2>
 
@@ -126,7 +112,7 @@ $result2 = mysqli_query($con, $latest_query);
                     labore
                     et
                     dolore magna aliqua.</small><br>
-                <a href="" class="button">Buy Now</a>
+                <a href="" class="btn-bgstroke">Buy Now</a>
             </div>
         </div>
     </div>
@@ -134,6 +120,33 @@ $result2 = mysqli_query($con, $latest_query);
 
 <?php include "footer.php" ?>
 
+
+<style>
+    .header {
+        width: 100%;
+        padding:60px 0;
+        text-align: center;
+        background: #789bbe;
+        color: white;
+    }
+
+
+    .btn-bgstroke {
+        font-size: 20px;
+        display: inline-block;
+        border: 1px solid white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 300;
+        margin-top: 30px;
+    }
+
+    .btn-bgstroke:hover {
+        background-color: white;
+        color: #33cccc;
+    }
+</style>
 </body>
 </html>
 

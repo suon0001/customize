@@ -10,9 +10,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <h1>contact us</h1>
-    </div>
+
     <div class="row">
         <h4 style="text-align:center">We'd love to hear from you!</h4>
     </div>
@@ -123,43 +121,7 @@
         margin: 20px auto 25px auto;
     }
 
-    .submit-btn {
-        float: right;
-        padding: 7px 35px;
-        border-radius: 60px;
-        display: inline-block;
-        background-color: #789bbe;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06),
-        0 2px 10px 0 rgba(0, 0, 0, 0.07);
-        -webkit-transition: all 300ms ease;
-        transition: all 300ms ease;
-    }
-
-    .submit-btn:hover {
-        transform: translateY(1px);
-        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.10),
-        0 1px 1px 0 rgba(0, 0, 0, 0.09);
-    }
-
-    @media (max-width: 768px) {
-        .submit-btn {
-            width: 100%;
-            float: none;
-            text-align: center;
-        }
-    }
-
-    input[type=checkbox] + label {
-        color: #ccc;
-        font-style: italic;
-    }
-
-    input[type=checkbox]:checked + label {
-        color: #f00;
-        font-style: normal;
+    -style: normal;
     }
 </style>
 </body>

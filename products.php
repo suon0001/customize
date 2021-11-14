@@ -90,19 +90,14 @@ if (isset($_GET['action'])) {
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['title']; ?></h5>
-                            <h6>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half"></i>
-                            </h6>
                             <p class="card-text">
                                 Some quick example text to build on the card.
                             </p>
-                            <small><s class="text-secondary">$519</s></small>
-                            <h5 class="price">$<?php echo $row['price']; ?></h5>
+                            <small><s class="text-secondary">$<?php echo $row['price'] + 10 / 100 * $row['price'];?></s></small>
+                            <h5 class="price">$<?php echo $row['price'];?></h5>
                             <button class="btn btn-warning my-1"><a href="products-details.php?<?php echo $row['product_id']; ?>">More Details</a></button>
                             <a href="includes/controller/addCart.php?<?php echo $row['product_id']; ?>">Add to Cart</a>
+
                         </div>
                     </div>
                 </form>

@@ -1,4 +1,10 @@
 <?php
+
+if (!isset($_SERVER['HTTP_REFERER'])) {
+    header('location: ../home.php');
+    exit;
+}
+
 include('../includes/db/connection.php');
 include("../includes/function.php");
 
@@ -7,6 +13,7 @@ $currentUserID = $user_data['login_id'];
 
 $query = "SELECT * FROM `product`";
 $result = mysqli_query($con, $query);
+
 ?>
 
 <!doctype html>
@@ -26,7 +33,7 @@ $result = mysqli_query($con, $query);
 </form>
 <form action="../index.php"
 ">
-<input class="button" type="submit" value="Return">
+<input class="button" type="submit" value="Sign out">
 </form>
 
 <table>

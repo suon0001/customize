@@ -71,7 +71,7 @@ require_once('navigation.php');
 
 </div>
 </div>
-<div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25">
+<div class="col-md-4 offset-md-6 border rounded mt-5 bg-white h-25">
 
     <div class="pt-4">
         <h6>PRICE DETAILS</h6>
@@ -99,13 +99,14 @@ require_once('navigation.php');
                         echo $total + $charge;
                         ?></h6>
                 <?php } ?>
+
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
+<style>
 
+</style>
 
 </body>
-</html>s
+</html>
