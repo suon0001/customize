@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $user_data = mysqli_fetch_assoc($result);
                 if (password_verify($password, $user_data['password'])) {
                     $_SESSION['login_id'] = $user_data['login_id'];
-                    header("Location: http://localhost/php/customize/admin/viewProduct.php?" . $user_data['login_id']);
-                    //echo $_POST["username"];
+                    header("Location: ../../admin/viewProduct.php?" . $user_data['login_id']);
+                    echo $_POST["username"];
                     die;
                 } else {
                     echo '<script>alert("Wrong e-mail or password")</script>';
