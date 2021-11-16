@@ -73,38 +73,38 @@ require_once('navigation.php');
 </div>
 <div class="col-md-4 offset-md-6 border rounded mt-5 bg-white h-25">
 
-    <div class="pt-4">
-        <h6>PRICE DETAILS</h6>
-        <hr>
-        <div class="row price-details">
-            <div class="col-md-6">
-                <?php
-                if (!empty($_SESSION['cart'])) {
-                    $count = count($_SESSION['cart']);
-                    echo "<h6>Price ($count items)</h6>";
-                } else {
-                    echo "<h6>Price (0 items)</h6>";
-                }
-                ?>
-                <h6>Delivery Charges</h6>
-                <hr>
-                <h6>Amount Payable</h6>
-            </div>
-            <div class="col-md-6">
-                <?php if (!empty($_SESSION['cart'])) { ?>
-                    <h6>$<?php echo $total; ?></h6>
-                    <h6 class="text-success">$<?php echo $charge = 18; ?></h6>
+    <form action="payment.php">
+        <div class="pt-4">
+            <h6>PRICE DETAILS</h6>
+            <hr>
+            <div class="row price-details">
+                <div class="col-md-6">
+                    <?php
+                    if (!empty($_SESSION['cart'])) {
+                        $count = count($_SESSION['cart']);
+                        echo "<h6>Price ($count items)</h6>";
+                    } else {
+                        echo "<h6>Price (0 items)</h6>";
+                    }
+                    ?>
+                    <h6>Delivery Charges</h6>
                     <hr>
-                    <h6>$<?php
-                        echo $total + $charge;
-                        ?></h6>
-                <?php } ?>
-
+                    <h6>Amount Payable</h6>
+                </div>
+                <div class="col-md-6">
+                    <?php if (!empty($_SESSION['cart'])) { ?>
+                        <h6>$<?php echo $total; ?></h6>
+                        <h6 class="text-success">$<?php echo $charge = 18; ?></h6>
+                        <hr>
+                        <h6>$<?php
+                            echo $total + $charge;
+                            ?></h6>
+                    <?php } ?>
+                </div>
+                <a class="button" href="payment.php">Payment</a>
             </div>
-            <input  type="button" value="check out">
         </div>
-
-    </div>
+    </form>
 
 </div>
 

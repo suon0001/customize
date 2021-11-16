@@ -12,12 +12,12 @@ CREATE TABLE Login
 
 CREATE TABLE CreditCard
 (
-    pay_id    INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    firstname VARCHAR(255) NULL,
-    lastname  VARCHAR(255) NULL,
-    month     INT          NULL,
-    year      INT          NULL,
-    valid     VARCHAR(20)
+    pay_id     INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cardholder VARCHAR(255) NULL,
+    cardnumber VARCHAR(255) NULL,
+    month      INT          NULL,
+    year       INT          NULL,
+    valid      VARCHAR(20)
 ) ENGINE = InnoDB;
 
 CREATE TABLE User

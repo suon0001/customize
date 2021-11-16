@@ -11,7 +11,6 @@ $query = "SELECT * FROM product ORDER BY product_id ASC";
 $result = mysqli_query($con, $query);
 
 
-
 if (isset($_POST['add_to_cart'])) {
     if (isset($_SESSION['shopping_cart'])) {
         $item_array_id = array_column($_SESSION['shopping_cart'], "product_id");
@@ -20,22 +19,20 @@ if (isset($_POST['add_to_cart'])) {
         if (in_array($_GET['id'], $item_array_id)) {
             $count = count($_SESSION['shopping_cart']);
             $item_array = array(
-              'product_id' => $_GET['id'],
-              'title' => $_POST['hidden_title'],
-              'price' => $_POST['hidden_price'],
-              'quantity' => $_POST['quantity'],
+                'product_id' => $_GET['id'],
+                'title' => $_POST['hidden_title'],
+                'price' => $_POST['hidden_price'],
+                'quantity' => $_POST['quantity'],
             );
             $_SESSION['shopping_cart'] [$count] = $item_array;
 
 
-        }
-        else {
+        } else {
             echo '<script>alert("item already added")</script>';
             echo '<script>window.location="products.php"</script>';
         }
 
-    }
-    else {
+    } else {
         $item_array = array(
             'product_id' => $_GET['id'],
             'title' => $_POST['hidden_title'],
@@ -47,9 +44,9 @@ if (isset($_POST['add_to_cart'])) {
 }
 
 if (isset($_GET['action'])) {
-    if($_GET['action'] == "deleted") {
-        foreach($_SESSION['shopping_cart'] as $key => $value) {
-            if($value['product_id'] == $_GET['id']) {
+    if ($_GET['action'] == "deleted") {
+        foreach ($_SESSION['shopping_cart'] as $key => $value) {
+            if ($value['product_id'] == $_GET['id']) {
                 unset($_SESSION['shopping_cart'][$keys]);
                 echo '<script>alert("Item removed successfully")</script>';
                 echo '<script>window.location="products.php"</script>';
@@ -93,12 +90,12 @@ if (isset($_GET['action'])) {
                             <p class="card-text">
                                 Some quick example text to build on the card.
                             </p>
-                            <small><s class="text-secondary">$<?php echo $row['price'] + 10 / 100 * $row['price'];?></s></small>
-                            <h5 class="price">$<?php echo $row['price'];?></h5>
-                            <button class="btn btn-warning my-1"><a href="products-details.php?<?php echo $row['product_id']; ?>">More Details</a></button>
-                            <a href="includes/controller/addCart.php?<?php echo $row['product_id']; ?>">Add to Cart</a>
-
+                            <small><s class="text-secondary">$<?php echo $row['price'] + 10 / 100 * $row['price']; ?></s></small>
+                            <h5 class="price">$<?php echo $row['price']; ?></h5>
+                            <a href="products-details.php?<?php echo $row['product_id']; ?>">More Details</a>
                         </div>
+                        <a class="button" href="includes/controller/addCart.php?<?php echo $row['product_id']; ?>">Add
+                            to Cart</a>
                     </div>
                 </form>
             </div>
