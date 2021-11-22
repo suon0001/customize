@@ -1,9 +1,9 @@
 <?php
 
 
-require_once("../db/connection.php");
+require_once("../includes/db/connection.php");
 
-include("../function.php");
+include("../includes/function.php");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 

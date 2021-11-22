@@ -50,7 +50,7 @@ require_once('navigation.php');
                     </div>
                     <div class="col"><a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a></div>
                     <div class="col">&dollar;<?php echo $row['price']; ?><span class="close">
-                                <a href="includes/controller/removeCart.php?<?php echo $row['product_id']; ?>"
+                                <a href="controller/removeCart.php?<?php echo $row['product_id']; ?>"
                                    class="remove-btn">X</a></span></div>
                     <?php
                     error_reporting(0);

@@ -99,7 +99,7 @@ $total += $row['price'];
                 <span data-balloon-length="medium" data-balloon="The 3 or 4-digit number on the back of your card."
                       data-balloon-pos="up">i</span>
             </div>
-            <a type="submit" name="submit" class="button" href="includes/controller/checkout.php">Check out</a>
+            <a type="submit" name="submit" class="button" href="controller/checkout.php">Check out</a>
         </div>
     </div>
 </div>

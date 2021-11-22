@@ -15,7 +15,7 @@
 <body>
 
 <h2>Add a new product</h2>
-<form action="../includes/controller/addItems.php" enctype="multipart/form-data" method="post">
+<form action="../controller/addItems.php" enctype="multipart/form-data" method="post">
     <label for="title">Title</label><br>
     <input type="text" name="title"> <br> <br>
 

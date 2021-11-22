@@ -16,7 +16,7 @@ include "navigation.php"
 </head>
 <body>
 <div class="container">
-    <form action="includes/controller/loginController.php" method="post">
+    <form action="controller/loginController.php" method="post">
         <h4>ACCOUNT</h4> <br>
         <div class="row">
             <input type="name" name="username">

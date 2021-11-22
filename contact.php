@@ -20,7 +20,7 @@ include "navigation.php" ?>
         <h4 style="text-align:center">We'd love to hear from you!</h4>
     </div>
 
-    <form action="includes/controller/sendmail.php" method="post">
+    <form action="controller/sendmail.php" method="post">
         <div class="row input-container">
             <div class="col-xs-12">
                 <div class="styled-input wide">

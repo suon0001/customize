@@ -19,7 +19,7 @@ $result = mysqli_query($con, $query);
 
 <h2>Edit product</h2>
 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-    <form action="../includes/controller/update.php?<?php echo $row['product_id']; ?>" enctype="multipart/form-data" method="post">
+    <form action="../controller/update.php?<?php echo $row['product_id']; ?>" enctype="multipart/form-data" method="post">
         <label for="title">Title</label><br>
         <input type="text" name="title" value="<?php echo $row['title']; ?>"> <br> <br>
 

@@ -94,7 +94,7 @@ if (isset($_GET['action'])) {
                             <h5 class="price">$<?php echo $row['price']; ?></h5>
                             <a href="products-details.php?<?php echo $row['product_id']; ?>">More Details</a>
                         </div>
-                        <a class="button" href="includes/controller/addCart.php?<?php echo $row['product_id']; ?>">Add
+                        <a class="button" href="controller/addCart.php?<?php echo $row['product_id']; ?>">Add
                             to Cart</a>
                     </div>
                 </form>

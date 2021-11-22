@@ -1,5 +1,5 @@
 <?php
-$myMail = "suon000@easv.dk";
+$myMail = "cutomize2021@gmail.com";
 $name = htmlspecialchars($_POST['name']);
 $email = htmlspecialchars($_POST['email']);
 $phone = htmlspecialchars($_POST['phone']);
@@ -14,6 +14,10 @@ if (!preg_match($regexp, $_POST['email'])) {
     $body = "$msg\n\nE-mail: $email";
     mail($myMail, $phone, $body, "From: $email\n");
     echo "Thanks for your E-mail";
+} else {
+    echo '<script>alert("Please fill out everything")</script>';
+    header("Location: home.php");
+
 }
 
 

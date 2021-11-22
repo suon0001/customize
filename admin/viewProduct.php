@@ -80,7 +80,7 @@ $result = mysqli_query($con, $query);
             </td>
             <td><a href="editProduct.php?GetID=<?php echo $product_id ?>"><i style="color:green" class="fa">&#10000;</i></a>
             </td>
-            <td><a href="../includes/controller/delete.php?<?php echo $product_id ?>"><i style="color:red" class="fa">&#9747;</i></a>
+            <td><a href="../controller/delete.php?<?php echo $product_id ?>"><i style="color:red" class="fa">&#9747;</i></a>
             </td>
 
         </tr>
