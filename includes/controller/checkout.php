@@ -7,14 +7,14 @@ if (isset($_POST['submit'])) {
         echo 'Please fill in the blanks';
     } else {
 
-        $cardholder = $_POST['cardholder'];
-        $cardnumber = $_POST['cardnumber'];
-        $month = $_POST['month'];
-        $year = $_POST['year'];
-        $valid = $_POST['valid'];
+        $cardholder = mysqli_prepare(['cardholder']);
+        $cardnumber = mysqli_prepare($_POST['cardnumber']);
+        $month = mysqli_prepare($_POST['month']);
+        $year = mysqli_prepare($_POST['year']);
+        $valid = mysqli_prepare($_POST['valid']);
     }
 
-    $query = "INSERT INTO creditcard(cardholder, cardnumber, `month`, `year`, valid)  VALUES ('$cardholder', '$cardnumber', '$month', '$year','$valid')";
+    $query = "INSERT INTO creditcard(cardholder, cardnumber, month, year, valid)  VALUES ('$cardholder', '$cardnumber', '$month', '$year','$valid')";
     $result = mysqli_query($con, $query);
 
     if ($result) {
@@ -22,4 +22,7 @@ if (isset($_POST['submit'])) {
     } else {
         echo 'Please check your query';
     }
+
+} else {
+    header("Location: ../../home.php");
 }

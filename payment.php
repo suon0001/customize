@@ -45,8 +45,8 @@ $total += $row['price'];
 
         <div class="row cardholder">
             <div class="info">
-                <label for="cardholdername">Name</label>
-                <input placeholder="e.g. Richard Bovell" id="cardholdername" type="text"/>
+                <label for="cardholder">Name</label>
+                <input placeholder="e.g. Richard Bovell" id="cardholder" type="text"/>
             </div>
         </div>
         <div class="row number">
@@ -58,8 +58,8 @@ $total += $row['price'];
         </div>
         <div class="row details">
             <div class="left">
-                <label for="expiry-date">Expiry</label>
-                <select id="expiry-date">
+                <label for="month">Expiry</label>
+                <select id="month">
                     <option>MM</option>
                     <option value="1">01</option>
                     <option value="2">02</option>
@@ -74,7 +74,7 @@ $total += $row['price'];
                     <option value="12">12</option>
                 </select>
                 <span>/</span>
-                <select id="expiry-date">
+                <select id="year">
                     <option>YYYY</option>
                     <option value="2016">2016</option>
                     <option value="2017">2017</option>
@@ -94,12 +94,12 @@ $total += $row['price'];
                 </select>
             </div>
             <div class="right">
-                <label for="cvv">CVC/CVV</label>
+                <label for="valid">CVC/CVV</label>
                 <input type="text" maxlength="4" placeholder="123"/>
                 <span data-balloon-length="medium" data-balloon="The 3 or 4-digit number on the back of your card."
                       data-balloon-pos="up">i</span>
             </div>
-            <a type="submit" class="button" href="includes/controller/checkout.php">Check out</a>
+            <a type="submit" name="submit" class="button" href="includes/controller/checkout.php">Check out</a>
         </div>
     </div>
 </div>
