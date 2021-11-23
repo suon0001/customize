@@ -1,7 +1,7 @@
 <?php
 
 
-require_once("../includes/db/connection.php");
+require_once("../db/connection.php");
 
 include("../includes/function.php");
 
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $user_data = mysqli_fetch_assoc($result);
                 if (password_verify($password, $user_data['password'])) {
                     $_SESSION['login_id'] = $user_data['login_id'];
-                    header("Location: ../../admin/viewProduct.php?" . $user_data['login_id']);
+                    header("Location: ../admin/viewProduct.php?" . $user_data['login_id']);
                     echo $_POST["username"];
                     die;
                 } else {
@@ -27,11 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
         echo '<script>alert("Wrong e-mail or password")</script>';
-        header("Location: ../../login.php");
+        header("Location: ../login.php");
 
     } else {
         echo '<script>alert("Please fill out everything")</script>';
-        header("Location: ../../login.php");
+        header("Location: ../login.php");
 
     }
 }

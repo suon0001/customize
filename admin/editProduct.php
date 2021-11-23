@@ -1,5 +1,5 @@
 <?php
-include('../includes/db/connection.php');
+include('../db/connection.php');
 $product_id = $_GET['GetID'];
 $query = "SELECT * FROM product WHERE product_id='" . $product_id . "'";
 $result = mysqli_query($con, $query);

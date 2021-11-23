@@ -5,7 +5,7 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
     exit;
 }
 
-include('../includes/db/connection.php');
+include('../db/connection.php');
 include("../includes/function.php");
 
 $user_data = check_login($con);

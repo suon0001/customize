@@ -2,8 +2,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-include "navigation.php";
-include "./includes/db/connection.php";
+include "../db/connection.php";
 
 $product = $_SERVER['QUERY_STRING'];
 
@@ -11,6 +10,8 @@ $featured_query = "SELECT * FROM product WHERE type = 'featured'LIMIT 3";
 $latest_query = "SELECT * FROM product WHERE type = 'latest' LIMIT 3";
 $result = mysqli_query($con, $featured_query);
 $result2 = mysqli_query($con, $latest_query);
+
+include "navigation.php";
 
 
 ?>
@@ -57,7 +58,7 @@ $result2 = mysqli_query($con, $latest_query);
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
             <div class="col-4">
                 <?php
-                echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 85%;' />";
+                echo "<img src=" . '../includes/db/images/' . $row['image'] . " style='width: 85%;' />";
                 ?>
                 <h4><?php echo $row['title']; ?></h4>
                 <div class="rating">
@@ -80,7 +81,7 @@ $result2 = mysqli_query($con, $latest_query);
             <div class="col-4">
                 <div class="">
                     <?php
-                    echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 85%;' />";
+                    echo "<img src=" . '../includes/db/images/' . $row['image'] . " style='width: 85%;' />";
                     ?>
                 </div>
 

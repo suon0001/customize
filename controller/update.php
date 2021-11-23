@@ -19,7 +19,7 @@ if (isset($_POST['update'])) {
     if (in_array($imageFileType, $extensions_arr)) {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], '../includes/db/images/' . $filename)) {
             echo "image uploaded";
-            header("Location: ../../admin/viewProduct.php");
+            header("Location: ../admin/viewProduct.php");
         } else {
             echo "error";
         }
@@ -31,7 +31,7 @@ if (isset($_POST['update'])) {
     $result = mysqli_query($con, $query);
 
     if ($result) {
-        header("Location: ../../admin/viewProduct.php");
+        header("Location: ../admin/viewProduct.php");
     } else {
         echo 'please check query';
     }

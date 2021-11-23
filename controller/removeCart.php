@@ -13,4 +13,4 @@ if ($key !== FALSE) {
     unset($_SESSION['cart'][$key]);
 }
 
-header("Location: ../../cart.php");
+header("Location: ../cart.php");

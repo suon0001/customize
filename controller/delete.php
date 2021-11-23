@@ -10,7 +10,7 @@ include('../db/connection.php');
    }else {
        'query error: '.mysqli_error($con);
    }
-   header("Location: ../../admin/viewProduct.php");
+   header("Location: ../admin/viewProduct.php");
 
 
 

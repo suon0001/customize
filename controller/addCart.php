@@ -12,4 +12,4 @@ if (empty($_SESSION['cart'])) {
 }
     array_push($_SESSION['cart'], $chosenProduct);
 
-    header("Location: ../../products.php");
+    header("Location: ../products.php");

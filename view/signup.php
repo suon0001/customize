@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require("./includes/db/connection.php");
-require("./includes/function.php");
+require("..//db/connection.php");
+require("../includes/function.php");
 include "navigation.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -42,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <h4>SIGNUP</h4> <br>
         <div class="row">
             <input type="name" name="username">
-            <input type="email" name="email">
             <input type="password" name="password">
             <input id="button" type="submit" value="Signup"><br>
             <a href="login.php">Login</a><br><br>
