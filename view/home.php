@@ -11,9 +11,8 @@ $latest_query = "SELECT * FROM product WHERE type = 'latest' LIMIT 3";
 $result = mysqli_query($con, $featured_query);
 $result2 = mysqli_query($con, $latest_query);
 
+
 include "navigation.php";
-
-
 ?>
 
 <!doctype html>
@@ -22,6 +21,7 @@ include "navigation.php";
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Customize</title>
 </head>
@@ -58,7 +58,7 @@ include "navigation.php";
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
             <div class="col-4">
                 <?php
-                echo "<img src=" . '../includes/db/images/' . $row['image'] . " style='width: 85%;' />";
+                echo "<img src=" . '../includes/images/' . $row['image'] . " style='width: 85%;' />";
                 ?>
                 <h4><?php echo $row['title']; ?></h4>
                 <div class="rating">
@@ -81,7 +81,7 @@ include "navigation.php";
             <div class="col-4">
                 <div class="">
                     <?php
-                    echo "<img src=" . '../includes/db/images/' . $row['image'] . " style='width: 85%;' />";
+                    echo "<img src=" . '../includes/images/' . $row['image'] . " style='width: 85%;' />";
                     ?>
                 </div>
 

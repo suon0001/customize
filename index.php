@@ -1,5 +1,5 @@
 <?php
-
+//problem with the index file
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +13,7 @@
     <title>Customize</title>
 </head>
 <body>
+
 <?php include("view/home.php"); ?>
 </body>
 </html>

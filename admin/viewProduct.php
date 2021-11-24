@@ -31,7 +31,7 @@ $result = mysqli_query($con, $query);
 <form action="addProduct.php" method="post">
     <input class="button" type="submit" value="Add">
 </form>
-<form action="../index.php"
+<form action="../view/home.php"
 ">
 <input class="button" type="submit" value="Sign out">
 </form>

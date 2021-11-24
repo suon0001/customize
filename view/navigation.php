@@ -4,7 +4,6 @@ if(!isset($_SESSION))
     session_start();
 
 }
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -34,7 +33,6 @@ if(!isset($_SESSION))
             <li><a href="">CUSTOMIZE</a></li>
             <li><a href=contact.php>CONTACT</a></li>
             <li><a href="login.php">LOGIN</a></li>
-            <li><a href="admin.php"></a></li>
         </ul>
     </nav>
     <a href="cart.php"><i class="fa fa-shopping-cart"></i>

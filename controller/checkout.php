@@ -18,11 +18,11 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($con, $query);
 
     if ($result) {
-        header("Location: ../../home.php");
+        header("Location: ../home.php");
     } else {
         echo 'Please check your query';
     }
 
 } else {
-    header("Location: ../../home.php");
+    header("Location: ../home.php");
 }

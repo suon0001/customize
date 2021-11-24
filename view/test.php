@@ -1,6 +1,6 @@
 <?php
 
-require_once("../includes/db/connection.php");
+require_once("../db/connection.php");
 error_reporting(0);
 ?>
 <?php

@@ -7,7 +7,16 @@ include "../db/connection.php";
 
 $product = $_SERVER['QUERY_STRING'];
 
-$query = "SELECT * FROM product ORDER BY product_id ASC";
+$limit = 6;
+
+if (isset($_GET["page"])) {
+    $page  = $_GET["page"];
+}
+else{
+    $page=1;
+};
+$start_from = ($page-1) * $limit;
+$query = "SELECT * FROM product ORDER BY product_id ASC LIMIT $start_from, $limit";
 $result = mysqli_query($con, $query);
 
 
@@ -54,6 +63,9 @@ if (isset($_GET['action'])) {
         }
     }
 }
+
+
+
 
 ?>
 
@@ -102,6 +114,20 @@ if (isset($_GET['action'])) {
         <?php } ?>
     </div>
 </div>
+
+<?php
+$result_db = mysqli_query($con,"SELECT COUNT(product_id) FROM product");
+$row_db = mysqli_fetch_row($result_db);
+$total_records = $row_db[0];
+$total_pages = ceil($total_records / $limit);
+$pagLink = "<ul class='pagination'>";
+for ($i=1; $i<=$total_pages; $i++) {
+    $pagLink .= "<li class='page-item'><a class='page-link' href='products.php?page=".$i."'>".$i."</a></li>";
+}
+echo $pagLink . "</ul>";
+
+
+?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -136,6 +162,11 @@ if (isset($_GET['action'])) {
 
     .card button:hover {
         opacity: 0.7;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
     }
 </style>
 </body>
