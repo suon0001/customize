@@ -35,7 +35,7 @@ if(!isset($_SESSION))
             <li><a href="login.php">LOGIN</a></li>
         </ul>
     </nav>
-    <a href="cart.php"><i class="fa fa-shopping-cart"></i>
+    <a href="../controller/addCart.php"><i class="fa fa-shopping-cart"></i>
         <?php
 
         if (isset($_SESSION['cart'])){

@@ -1,20 +1,10 @@
 <?php
 
-session_start();
-
-include "./includes/db/connection.php";
-
-
-if (!empty($_SESSION['cart'])) {
-    $ids = "";
-    foreach ($_SESSION['cart'] as $id) {
-        $ids = $ids . $id . ",";
-    }
-    $ids = rtrim($ids, ',');
-
-    $cartQuery = "SELECT * FROM `product` WHERE product_id IN (" . implode(',', $_SESSION['cart']) . ") ";
-    $result = $con->query($cartQuery);
+if (!isset($_SESSION)) {
+    session_start();
 }
+
+include "../db/connection.php";
 ?>
 
 <!doctype html>
@@ -43,7 +33,7 @@ require_once('navigation.php');
             <div class="shopping-cart">
                 <hr>
                 <div class="row main align-items-center">
-                    <?php echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 20%;' />"; ?>
+                    <?php echo "<img src=" . '../includes/images/' . $row['image'] . " style='width: 20%;' />"; ?>
                     <div class="col">
                         <div class="row text-muted"><?php echo $row['category']; ?></div>
                         <h3><?php echo $row['title']; ?></h3>

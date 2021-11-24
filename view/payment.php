@@ -1,125 +1,249 @@
 <?php
-session_start();
-
-include "navigation.php";
-include "../includes/db/connection.php";
-
-if (!empty($_SESSION['cart'])) {
-$ids = "";
-foreach ($_SESSION['cart'] as $id) {
-    $ids = $ids . $id . ",";
+if (!isset($_SERVER['HTTP_REFERER'])) {
+    header('location: ../home.php');
+    exit;
 }
-$ids = rtrim($ids, ',');
 
+include('../db/connection.php');
+include("../includes/function.php");
 
-$cartQuery = "SELECT * FROM `product` WHERE product_id IN (" . implode(',', $_SESSION['cart']) . ") ";
-$result = $con->query($cartQuery);
+$user_data = check_login($con);
+$currentUserID = $user_data['login_id'];
 
-
-error_reporting(0);
-ini_set('display_errors', 0);
-$total += $row['price'];
+$query = "SELECT * FROM `product`";
+$result = mysqli_query($con, $query);
 
 ?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Check Out</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Data</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="ajax/ajax.js"></script>
 </head>
 <body>
+<div class="container">
+    <p id="success"></p>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Manage <b>Product</b></h2>
+                </div>
+                <div class="col-sm-6">
+                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
+                                class="material-icons"></i> <span>Add New Product</span></a>
+                    <a href="JavaScript:void(0);" class="btn btn-danger" id="delete_multiple"><i class="material-icons"></i>
+                        <span>Delete</span></a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>
+                    <span class="custom-checkbox">
+                        <input type="checkbox" id="selectAll">
+                        <label for="selectAll"></label>
+                    </span>
+                </th>
+                <th>SL NO</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
 
+            <?php
+            $result = mysqli_query($con, "SELECT * FROM product");
+            $i = 1;
+            while ($row = mysqli_fetch_array($result)) {
+                ?>
+                <tr id="<?php echo $row["product_id"]; ?>">
+                    <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" class="user_checkbox"
+                                       data-user-id="<?php echo $row["product_id"]; ?>">
+								<label for="checkbox2"></label>
+							</span>
+                    </td>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $row["title"]; ?></td>
+                    <td><?php echo $row["description"]; ?></td>
+                    <td><?php echo $row["type"]; ?></td>
+                    <td><?php echo $row["category"]; ?></td>
+                    <td><?php echo $row["color"]; ?></td>
+                    <td><?php echo $row["price"]; ?></td>
+                    <td>
+                        <?php
+                        echo "<img src=" . '../includes/images/' . $row['image'] . " style='width:60%;' />";
+                        ?>
+                    </td>
+                    <td>
+                        <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                            <i class="material-icons update" data-toggle="tooltip"
+                               data-id="<?php echo $row["product_id"]; ?>"
+                               data-titlr="<?php echo $row["title"]; ?>"
+                               data-description="<?php echo $row["description"]; ?>"
+                               data-type="<?php echo $row["type"]; ?>"
+                               data-price="<?php echo $row["price"]; ?>
+"
+                               title="Edit"></i>
+                        </a>
+                        <a href="#deleteEmployeeModal" class="delete" data-id="<?php echo $row["product_id"]; ?>"
+                           data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+                                                  title="Delete"></i></a>
+                    </td>
+                </tr>
+                <?php
+                $i++;
+            }
+            ?>
+            </tbody>
+        </table>
 
-<div class="component">
-    <div class="price">
-        <h1>$<?php
-            echo $total + $charge;
-            ?></h1>
-        <?php } ?>
     </div>
-    <div class="card__container">
+</div>
+<!-- Add Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="../controller/addItems.php" enctype="multipart/form-data" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="title" name="title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select type="text" id="type" name="type" class="form-control" required>
+                            <option value="">--- Choose a Type ---</option>
+                            <option value="Latest">Latest</option>
+                            <option value="Featured">Featured</option>
+                            <option value="Recommend">Recommend</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" id="description" name="description" class="form-control" required>
+                    </div>
 
-        <div class="row cardholder">
-            <div class="info">
-                <label for="cardholder">Name</label>
-                <input placeholder="e.g. Richard Bovell" id="cardholder" type="text"/>
-            </div>
-        </div>
-        <div class="row number">
-            <div class="info">
-                <label for="cardnumber">Card number</label>
-                <input id="cardnumber" type="text" pattern="[0-9]{16,19}" maxlength="19"
-                       placeholder="8888-8888-8888-8888"/>
-            </div>
-        </div>
-        <div class="row details">
-            <div class="left">
-                <label for="month">Expiry</label>
-                <select id="month">
-                    <option>MM</option>
-                    <option value="1">01</option>
-                    <option value="2">02</option>
-                    <option value="3">03</option>
-                    <option value="4">04</option>
-                    <option value="5">05</option>
-                    <option value="6">06</option>
-                    <option value="7">07</option>
-                    <option value="8">08</option>
-                    <option value="9">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
-                <span>/</span>
-                <select id="year">
-                    <option>YYYY</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                    <option value="2029">2029</option>
-                    <option value="2030">2030</option>
-                </select>
-            </div>
-            <div class="right">
-                <label for="valid">CVC/CVV</label>
-                <input type="text" maxlength="4" placeholder="123"/>
-                <span data-balloon-length="medium" data-balloon="The 3 or 4-digit number on the back of your card."
-                      data-balloon-pos="up">i</span>
-            </div>
-            <a type="submit" name="submit" class="button" href="../controller/checkout.php">Check out</a>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select type="category" id="category" name="category" class="form-control" required>
+                            <option value="">--- Choose a Category ---</option>
+                            <option value="DYI">DYI</option>
+                            <option value="Headset">Headset</option>
+                            <option value="Controller">Controller</option>
+                            <option value="Accessories">Accessories</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" id="color" name="color" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="price" id="price" name="price" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock</label>
+                        <input type="number" id="stock" name="stock" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Add image</label>
+                        <input type="file" name="image" id="image" value=""  class="form-control" required/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" value="1" name="type">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <button type="submit" name="submit" class="btn btn-success" id="btn-add">Add</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="update_form">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="id_u" name="id" class="form-control" required>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="name_u" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email_u" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>PHONE</label>
+                        <input type="phone" id="phone_u" name="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="city" id="city_u" name="city" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" value="2" name="type">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <button type="button" class="btn btn-info" id="update">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
 
-<style>
-    .component {
-        position: relative;
-        width: 50%;
-        margin: 50px auto;
-        padding: 10px;
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="id_d" name="id" class="form-control">
+                    <p>Are you sure you want to delete these Records?</p>
+                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <a href="../controller/delete.php?<?php echo $product_id ?>"><button type="button" class="btn btn-danger" id="delete">Delete</button></a>
+                </div>
 
-        box-shadow: 2px 2px 10px #454545;
-        background-color: #FFFFFF;
-
-        text-align: center;
-    }
-
-</style>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

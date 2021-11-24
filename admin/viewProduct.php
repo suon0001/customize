@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SERVER['HTTP_REFERER'])) {
     header('location: ../home.php');
     exit;
@@ -16,144 +15,153 @@ $result = mysqli_query($con, $query);
 
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>View product</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>View Product</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="ajax/ajax.js"></script>
 </head>
 <body>
-<h1>Product View</h1>
-<form action="addProduct.php" method="post">
-    <input class="button" type="submit" value="Add">
-</form>
-<form action="../view/home.php"
-">
-<input class="button" type="submit" value="Sign out">
-</form>
+<div class="container">
+    <p id="success"></p>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Manage <b>Product</b></h2>
+                </div>
+                <div >
+                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
+                                class="material-icons"></i> <span>Add New Product</span></a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>NO</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Stock</th>
+                <th>ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
 
-<table>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Title</th>
-        <th scope="col">Type</th>
-        <th scope="col">Description</th>
-        <th scope="col">Category</th>
-        <th scope="col">Color</th>
-        <th scope="col">Price</th>
-        <th scope="col">Stock</th>
-        <th scope="col">Image</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
-    </tr>
-
-    <?php
-    while ($row = mysqli_fetch_assoc($result)) {
-        $product_id = $row['product_id'];
-        $title = $row['title'];
-        $type = $row['type'];
-        $description = $row['description'];
-        $category = $row['category'];
-        $color = $row['color'];
-        $price = $row['price'];
-        $stock = $row['stock'];
-        $product_image = $row['image'];
-        ?>
-
-        <tr>
-            <td><?php echo $product_id ?></td>
-            <td><?php echo $title ?></td>
-            <td><?php echo $type ?></td>
-            <td><?php echo $description ?></td>
-            <td><?php echo $category ?></td>
-            <td><?php echo $color ?></td>
-            <td><?php echo '$' . $price ?></td>
-            <td><?php echo $stock ?></td>
-            <td>
-                <?php
-                echo "<img src=" . '../includes/db/images/' . $row['image'] . " style='width: 20%;' />";
+            <?php
+            $i = 1;
+            while ($row = mysqli_fetch_array($result)) {
                 ?>
-            </td>
-            <td><a href="editProduct.php?GetID=<?php echo $product_id ?>"><i style="color:green" class="fa">&#10000;</i></a>
-            </td>
-            <td><a href="../controller/delete.php?<?php echo $product_id ?>"><i style="color:red" class="fa">&#9747;</i></a>
-            </td>
+                <tr id="<?php echo $row["product_id"]; ?>">
 
-        </tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $row["title"]; ?></td>
+                    <td><?php echo $row["description"]; ?></td>
+                    <td><?php echo $row["type"]; ?></td>
+                    <td><?php echo $row["category"]; ?></td>
+                    <td><?php echo $row["color"]; ?></td>
+                    <td><?php echo $row["price"]; ?></td>
+                    <td><?php echo $row["stock"]; ?></td>
+                    <td>
+                        <?php
+                        echo "<img src=" . '../includes/images/' . $row['image'] . " style='width:20%;' />";
+                        ?>
+                    </td>
+                    <td>
+                        <a href="editProduct.php?GetID=<?php echo $row['product_id']?>" class="edit"><i class="material-icons update" title="Edit"></i></a>
+                        <a href="../controller/delete.php?<?php echo $row['product_id']?>" class="delete" data-id="<?php echo $row["product_id"]; ?>"
+                           data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+                                                  title="Delete"></i></a>
+                    </td>
+                </tr>
+                <?php
+                $i++;
+            }
+            ?>
+            </tbody>
+        </table>
 
-        <?php
-    }
-    ?>
+    </div>
+</div>
+<!-- Add Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="../controller/addItems.php" enctype="multipart/form-data" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="title" name="title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select type="text" id="type" name="type" class="form-control" required>
+                            <option value="">--- Choose a Type ---</option>
+                            <option value="Latest">Latest</option>
+                            <option value="Featured">Featured</option>
+                            <option value="Recommend">Recommend</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" id="description" name="description" class="form-control" required>
+                    </div>
 
-</table>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select type="category" id="category" name="category" class="form-control" required>
+                            <option value="">--- Choose a Category ---</option>
+                            <option value="DYI">DYI</option>
+                            <option value="Headset">Headset</option>
+                            <option value="Controller">Controller</option>
+                            <option value="Accessories">Accessories</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" id="color" name="color" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="price" id="price" name="price" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock</label>
+                        <input type="number" id="stock" name="stock" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Add image</label>
+                        <input type="file" name="image" id="image" value="" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" value="1" name="type">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <button type="submit" name="submit" class="btn btn-success" id="btn-add">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-
-<style>
-
-    * {
-        padding: 0;
-        margin: 0 auto;
-    }
-
-    table,
-    td,
-    th {
-        border: 1px solid #789bbe;
-        padding: 10px;
-        text-align: center;
-    }
-
-    th {
-        color: white;
-        background-color: #789bbe;
-        border: 1px solid lightgray;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
-
-    h1 {
-        text-align: center;
-        margin-top: 1em;
-        text-transform: uppercase;
-        font-size: 3vw;
-        margin-bottom: .5em;
-    }
-
-
-    .edit input[type='submit'] {
-        margin-top: 10px;
-        text-align: center;
-        background-color: white;
-        font-size: 15px;
-    }
-
-    .edit input[type='submit']:hover {
-        margin-top: 10px;
-        text-align: center;
-        background-color: lightgray;
-    }
-
-    .button {
-        font: inherit;
-        line-height: normal;
-        cursor: pointer;
-        background: #789bbe;
-        color: white;
-        font-weight: bold;
-        width: auto;
-        margin-left: auto;
-        font-weight: bold;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-</style>
 </body>
 </html>

@@ -2,7 +2,6 @@
 
 
 require_once("../db/connection.php");
-
 include("../includes/function.php");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -27,11 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
         echo '<script>alert("Wrong e-mail or password")</script>';
-        header("Location: ../login.php");
+        header("Location: ../view/login.php");
 
     } else {
         echo '<script>alert("Please fill out everything")</script>';
-        header("Location: ../login.php");
+        header("Location: ../view/login.php");
 
     }
 }

@@ -1,29 +1,8 @@
 <?php
 
 session_start();
-require("..//db/connection.php");
-require("../includes/function.php");
+
 include "navigation.php";
-
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-    if (!empty($username) && !empty($password) && !is_numeric($username)) {
-
-        //save to database
-        $user_id = random_num(20);
-        $query = "INSERT INTO login (username, email, password, user_type) VALUES ('$username', '$hashed_password', 0)";
-        mysqli_query($con, $query);
-
-        header("Location: login.php");
-        die;
-    } else {
-        echo "Please into some valid information!";
-    }
-}
 
 ?>
 <!doctype html>
@@ -38,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
 
 <div class="container">
-    <form method="post">
+    <form action="../controller/register.php" method="post">
         <h4>SIGNUP</h4> <br>
         <div class="row">
             <input type="name" name="username">

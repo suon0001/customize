@@ -1,17 +1,16 @@
 <?php
 
-if (!isset($_SESSION)) {
-    session_start();
+if (!empty($_SESSION['cart'])) {
+    $ids = "";
+    foreach ($_SESSION['cart'] as $id) {
+        $ids = $ids . $id . ",";
+    }
+    $ids = rtrim($ids, ',');
+
+    $cartQuery = "SELECT * FROM `product` WHERE product_id IN (" . implode(',', $_SESSION['cart']) . ") ";
+    $result = $con->query($cartQuery);
 }
 
-$chosenProduct = $_SERVER['QUERY_STRING'];
-
-if (empty($_SESSION['cart'])) {
-    $_SESSION['cart'] = array();
-
-}
-    array_push($_SESSION['cart'], $chosenProduct);
-
-    header("Location: ../products.php");
+    header("Location: ../view/cart.php");
 
 
