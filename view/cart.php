@@ -5,6 +5,32 @@ if (!isset($_SESSION)) {
 }
 
 include "../db/connection.php";
+
+
+if (!empty($_SESSION['cart'])) {
+    $ids = "";
+    foreach ($_SESSION['cart'] as $id) {
+        $ids = $ids . $id . ",";
+    }
+    $ids = rtrim($ids, ',');
+
+    $cartQuery = "SELECT * FROM `product` WHERE product_id IN (" . implode(',', $_SESSION['cart']) . ") ";
+    $result = $con->query($cartQuery);
+}
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == "deleted") {
+        foreach ($_SESSION['shopping_cart'] as $key => $value) {
+            if ($value['product_id'] == $_GET['id']) {
+                unset($_SESSION['shopping_cart'][$keys]);
+                echo '<script>alert("Item removed successfully")</script>';
+                echo '<script>window.location="products.php"</script>';
+            }
+        }
+    }
+}
+
+
+include "navigation.php";
 ?>
 
 <!doctype html>
@@ -15,17 +41,15 @@ include "../db/connection.php";
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cart</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body class="bg-light">
 
-<?php
-require_once('navigation.php');
-?>
+
 <div class="container-fluid">
+  <?php echo  "<h1>You have " . count($_SESSION['cart']) . " items in your cart</h1>" ?>
     <?php if (!empty($_SESSION['cart'])) {
     while ($row = mysqli_fetch_assoc($result)) { ?>
     <div class="row px-5">
@@ -33,7 +57,7 @@ require_once('navigation.php');
             <div class="shopping-cart">
                 <hr>
                 <div class="row main align-items-center">
-                    <?php echo "<img src=" . '../includes/images/' . $row['image'] . " style='width: 20%;' />"; ?>
+                    <?php echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 20%;' />"; ?>
                     <div class="col">
                         <div class="row text-muted"><?php echo $row['category']; ?></div>
                         <h3><?php echo $row['title']; ?></h3>
@@ -99,9 +123,8 @@ require_once('navigation.php');
 </div>
 
 
-<style>
 
-</style>
 
 </body>
+
 </html>

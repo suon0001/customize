@@ -39,11 +39,12 @@ $result = mysqli_query($con, $query);
             <div class="row">
                 <div class="col-sm-6">
                     <h2>Manage <b>Product</b></h2>
+                    <div>
+                        <a href="#addEmployeeModal"  class="btn bg-info align-middle" data-toggle="modal"><i
+                                    class="material-icons"></i> <span>Add New Product</span></a>
+                    </div>
                 </div>
-                <div >
-                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
-                                class="material-icons"></i> <span>Add New Product</span></a>
-                </div>
+
             </div>
         </div>
         <table class="table table-striped table-hover">
@@ -56,8 +57,9 @@ $result = mysqli_query($con, $query);
                 <th>Category</th>
                 <th>Color</th>
                 <th>Price</th>
-                <th>Image</th>
                 <th>Stock</th>
+                <th>Image</th>
+                <th>Filename</th>
                 <th>ACTION</th>
             </tr>
             </thead>
@@ -77,11 +79,12 @@ $result = mysqli_query($con, $query);
                     <td><?php echo $row["color"]; ?></td>
                     <td><?php echo $row["price"]; ?></td>
                     <td><?php echo $row["stock"]; ?></td>
-                    <td>
+                    <td class="w-10">
                         <?php
-                        echo "<img src=" . '../includes/images/' . $row['image'] . " style='width:20%;' />";
+                        echo "<img src=" . '../includes/images/' . $row['image'] . " style='width:30%;' />";
                         ?>
                     </td>
+                    <td><?php echo $row["image"]; ?></td>
                     <td>
                         <a href="editProduct.php?GetID=<?php echo $row['product_id']?>" class="edit"><i class="material-icons update" title="Edit"></i></a>
                         <a href="../controller/delete.php?<?php echo $row['product_id']?>" class="delete" data-id="<?php echo $row["product_id"]; ?>"

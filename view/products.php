@@ -52,17 +52,6 @@ if (isset($_POST['add_to_cart'])) {
     }
 }
 
-if (isset($_GET['action'])) {
-    if ($_GET['action'] == "deleted") {
-        foreach ($_SESSION['shopping_cart'] as $key => $value) {
-            if ($value['product_id'] == $_GET['id']) {
-                unset($_SESSION['shopping_cart'][$keys]);
-                echo '<script>alert("Item removed successfully")</script>';
-                echo '<script>window.location="products.php"</script>';
-            }
-        }
-    }
-}
 
 
 

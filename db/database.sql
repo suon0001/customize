@@ -58,6 +58,6 @@ CREATE TABLE Persons
     id        INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(255) NULL,
     lastName  VARCHAR(255) NULL,
-    Address   VARCHAR(255) NULL,
+    address   VARCHAR(255) NULL,
     city      VARCHAR(244)
 ) ENGINE = InnoDB;
