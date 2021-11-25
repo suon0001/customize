@@ -2,23 +2,28 @@
 require_once("../db/connection.php");
 
 if (isset($_POST['submit'])) {
-    if (empty($_POST['firstName']) || empty($_POST['lastName']) || empty($_POST['address']) ||
-        empty($_POST['city'])) {
+    if (empty($_POST['firstName']) || empty($_POST['lastName']) || empty($_POST['company']) || empty($_POST['country']) ||
+        empty($_POST['street']) || empty($_POST['city']) || empty($_POST['postcode']) ||
+        empty($_POST['state']) || empty($_POST['phone']) || empty($_POST['email'])) {
         echo 'Please fill in the blanks';
     } else {
 
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
-        $address = $_POST['address'];
+        $company = $_POST['company'];
+        $country = $_POST['country'];
+        $street = $_POST['street'];
         $city = $_POST['city'];
+        $postcode = $_POST['postcode'];
+        $state = $_POST['state'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
 
 
     }
 
-    $query = "INSERT INTO persons(firstName, lastName, address, city) 
-                        VALUES ('$firstName', '$lastName', '$address', '$city')";
+    $query = "INSERT INTO address(firstName, lastName, company, country, street, city, postcode, state, phone, email) VALUES ('$firstName', '$lastName','€company', '$country', '$street', '$city', '$postcode', '$state', '$phone', '$email')";
     $result = mysqli_query($con, $query);
-
     if ($result) {
         header("Location: ../admin/orderList.php");
     } else {

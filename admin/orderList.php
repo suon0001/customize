@@ -10,7 +10,7 @@ include("../includes/function.php");
 $user_data = check_login($con);
 $currentUserID = $user_data['login_id'];
 
-$query = "SELECT * FROM `persons`";
+$query = "SELECT * FROM `address`";
 $result = mysqli_query($con, $query);
 
 ?>
@@ -50,9 +50,16 @@ $result = mysqli_query($con, $query);
                 <th>NO</th>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Company</th>
+                <th>Country</th>
+                <th>Street</th>
                 <th>Address</th>
                 <th>City</th>
-                <th>Action</th>
+                <th>Postcode</th>
+                <th>State</th>
+                <th>Phone</th>
+                <th>Email</th>
+
             </tr>
             </thead>
             <tbody>
@@ -66,8 +73,14 @@ $result = mysqli_query($con, $query);
                     <td><?php echo $i; ?></td>
                     <td><?php echo $row["firstName"]; ?></td>
                     <td><?php echo $row["lastName"]; ?></td>
-                    <td><?php echo $row["address"]; ?></td>
+                    <td><?php echo $row["company"]; ?></td>
+                    <td><?php echo $row["country"]; ?></td>
+                    <td><?php echo $row["street"]; ?></td>
                     <td><?php echo $row["city"]; ?></td>
+                    <td><?php echo $row["postcode"]; ?></td>
+                    <td><?php echo $row["state"]; ?></td>
+                    <td><?php echo $row["phone"]; ?></td>
+                    <td><?php echo $row["email"]; ?></td>
                    <td>
 
                         <a href="#">View</a>

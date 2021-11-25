@@ -53,11 +53,17 @@ CREATE TABLE Product
     time_date   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = InnoDB;
 
-CREATE TABLE Persons
+CREATE TABLE address
 (
     id        INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(255) NULL,
     lastName  VARCHAR(255) NULL,
-    address   VARCHAR(255) NULL,
-    city      VARCHAR(244)
+    company   VARCHAR(255) NULL,
+    country   VARCHAR(244) NULL,
+    street    VARCHAR(244) NULL,
+    city      VARCHAR(244) NULL,
+    postcode  INT          NOT NULL,
+    state     VARCHAR(244) NULL,
+    phone     VARCHAR(244) NULL,
+    email     VARCHAR(244) NULL
 ) ENGINE = InnoDB;
