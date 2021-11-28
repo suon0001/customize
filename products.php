@@ -2,8 +2,8 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-include "navigation.php";
-include "../db/connection.php";
+include "view/navigation.php";
+include "db/connection.php";
 
 $product = $_SERVER['QUERY_STRING'];
 
@@ -70,7 +70,7 @@ if (isset($_POST['add_to_cart'])) {
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
           integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="css/main.css">
     <title>Products</title>
 </head>
 <body>
@@ -83,7 +83,7 @@ if (isset($_POST['add_to_cart'])) {
                     <div class="card">
                         <div>
                             <?php
-                            echo "<img src=" . '../db/images/' . $row['image'] . " style='width: 100%;' />";
+                            echo "<img src=" . 'includes/images/' . $row['image'] . " style='width: 100%;' />";
                             ?>
                         </div>
                         <div class="card-body">
@@ -95,7 +95,7 @@ if (isset($_POST['add_to_cart'])) {
                             <h5 class="price">$<?php echo $row['price']; ?></h5>
                             <a href="products-details.php?<?php echo $row['product_id']; ?>">More Details</a>
                         </div>
-                        <a class="button" href="../controller/addCart.php?<?php echo $row['product_id']; ?>">Add
+                        <a class="button" href="controller/addCart.php?<?php echo $row['product_id']; ?>">Add
                             to Cart</a>
                     </div>
                 </form>
@@ -122,7 +122,7 @@ echo $pagLink . "</ul>";
         crossorigin="anonymous"></script>
 
 
-<?php include("footer.php"); ?>
+<?php include("view/footer.php"); ?>
 
 <style>
     .card {

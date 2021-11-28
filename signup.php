@@ -2,7 +2,7 @@
 
 session_start();
 
-include "navigation.php";
+include "view/navigation.php";
 
 ?>
 <!doctype html>
@@ -17,7 +17,7 @@ include "navigation.php";
 <body>
 
 <div class="container">
-    <form action="../controller/register.php" method="post">
+    <form action="controller/register.php" method="post">
         <h4>SIGNUP</h4> <br>
         <div class="row">
             <input type="name" name="username">

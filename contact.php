@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-include "navigation.php" ?>
+include "view/navigation.php" ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,6 +11,7 @@ include "navigation.php" ?>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
     <title>Contact</title>
 </head>
 <body>
@@ -20,7 +21,7 @@ include "navigation.php" ?>
         <h4 style="text-align:center">We'd love to hear from you!</h4>
     </div>
 
-    <form action="../controller/sendmail.php" method="post">
+    <form action="controller/sendmail.php" method="post">
         <div class="row input-container">
             <div class="col-xs-12">
                 <div class="styled-input wide">

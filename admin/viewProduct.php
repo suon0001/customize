@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_SERVER['HTTP_REFERER'])) {
     header('location: ../home.php');
     exit;
@@ -32,6 +34,12 @@ $result = mysqli_query($con, $query);
     <script src="ajax/ajax.js"></script>
 </head>
 <body>
+<?php
+if ($user_data['user_type'] === '0') {
+    echo "<a href='admin/admin_panel.php' style='color: white; background-color: black; padding: 1em; text-decoration: none;'>ADMIN PANEL</a>";
+}
+
+    ?>
 <div class="container">
     <p id="success"></p>
     <div class="table-wrapper">

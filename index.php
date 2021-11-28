@@ -1,5 +1,7 @@
 <?php
-//problem with the index file
+    if (!isset($_SESSION)) {
+        session_start();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +15,6 @@
 </head>
 <body>
 
-<?php include("view/home.php"); ?>
+<?php include("home.php"); ?>
 </body>
 </html>

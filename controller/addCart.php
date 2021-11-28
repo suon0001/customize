@@ -11,6 +11,6 @@ if (!empty($_SESSION['cart'])) {
     $result = $con->query($cartQuery);
 }
 
-    header("Location: ../view/cart.php");
+    header("Location: ../products.php");
 
 

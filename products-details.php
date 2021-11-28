@@ -4,8 +4,8 @@ if (!isset($_SESSION)) {
 }
 $product = $_SERVER['QUERY_STRING'];
 
-include "navigation.php";
-include "../includes/db/connection.php";
+include "view/navigation.php";
+include "db/connection.php";
 
 $query = "SELECT * FROM product WHERE product_ID = $product";
 $result = mysqli_query($con, $query);
@@ -20,7 +20,7 @@ $result2 = mysqli_query($con, $query2);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           class="offer-img">
 </head>

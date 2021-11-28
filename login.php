@@ -1,8 +1,8 @@
 <?php
 session_start();
-require("../db/connection.php");
-require("../includes/function.php");
-include "navigation.php"
+require("db/connection.php");
+require("includes/function.php");
+include "view/navigation.php"
 
 ?>
 <!doctype html>
@@ -12,11 +12,12 @@ include "navigation.php"
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
     <title>Login</title>
 </head>
 <body>
 <div class="container">
-    <form action="../controller/loginController.php" method="post">
+    <form action="controller/loginController.php" method="post">
         <h4>ACCOUNT</h4> <br>
         <div class="row">
             <input type="name" name="username">

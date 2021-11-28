@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-include "../db/connection.php";
+include "db/connection.php";
 
 
 if (!empty($_SESSION['cart'])) {
@@ -14,14 +14,14 @@ if (!empty($_SESSION['cart'])) {
     }
     $ids = rtrim($ids, ',');
 
-    $cartQuery = "SELECT * FROM `product` WHERE product_id IN (" . implode(',', $_SESSION['cart']) . ") ";
+    $cartQuery = "SELECT * FROM `product` WHERE product_id ";
     $cartresult = $con->query($cartQuery);
 }
 if (isset($_GET['action'])) {
     if ($_GET['action'] == "deleted") {
         foreach ($_SESSION['shopping_cart'] as $key => $value) {
             if ($value['product_id'] == $_GET['id']) {
-                unset($_SESSION['shopping_cart'][$keys]);
+                unset($_SESSION['shopping_cart'][$key]);
                 echo '<script>alert("Item removed successfully")</script>';
                 echo '<script>window.location="products.php"</script>';
             }
@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
 }
 
 
-include "navigation.php";
+include "view/navigation.php";
 ?>
 
 <!doctype html>
@@ -54,7 +54,7 @@ include "navigation.php";
 
 
 <div class="container-fluid">
-  <?php echo  "<h1>You have " . count($_SESSION['cart']) . " items in your cart</h1>" ?>
+    <?php echo "<h1>You have " . count($_SESSION['cart']) . " items in your cart</h1>" ?>
     <?php if (!empty($_SESSION['cart'])) {
     while ($row = mysqli_fetch_assoc($cartresult)) { ?>
     <div class="row px-5">
@@ -62,14 +62,14 @@ include "navigation.php";
             <div class="shopping-cart">
                 <hr>
                 <div class="row main align-items-center">
-                    <?php echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 20%;' />"; ?>
+                    <?php echo "<img src=" . './includes/images/' . $row['image'] . " style='width: 10%;' />"; ?>
                     <div class="col">
                         <div class="row text-muted"><?php echo $row['category']; ?></div>
                         <h3><?php echo $row['title']; ?></h3>
                     </div>
                     <div class="col"><a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a></div>
                     <div class="col">&dollar;<?php echo $row['price']; ?><span class="close">
-                                <a href="../controller/removeCart.php?<?php echo $row['product_id']; ?>"
+                                <a href="controller/removeCart.php?<?php echo $row['product_id']; ?>"
                                    class="remove-btn">X</a></span></div>
                     <?php
                     error_reporting(0);
@@ -92,7 +92,7 @@ include "navigation.php";
 </div>
 <div class="col-md-4 offset-md-6 border rounded mt-5 bg-white h-25">
 
-    <form action="payment.php">
+    <form action="view/payment.php">
         <div class="pt-4">
             <h6>PRICE DETAILS</h6>
             <hr>
@@ -120,14 +120,12 @@ include "navigation.php";
                             ?></h6>
                     <?php } ?>
                 </div>
-                <a class="button" href="payment.php">Payment</a>
+                <a class="button" href="view/payment.php">Payment</a>
             </div>
         </div>
     </form>
 
 </div>
-
-
 
 
 </body>
