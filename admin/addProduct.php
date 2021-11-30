@@ -49,7 +49,7 @@
     <input type="number" name="stock"> <br> <br>
 
     <label for="image">Add image</label>
-    <input type="file" name="image" id="image" value="" />
+    <input type="file" name="file" />
 
     <input type="submit" name="submit" value="Add">
     <a href="viewProduct.php"><input type="button" name="cancel" value="Cancel"></a>

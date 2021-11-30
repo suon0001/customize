@@ -11,8 +11,8 @@ if (!empty($_SESSION['cart'])) {
         $ids = $ids . $id . ",";
     }
     $ids = rtrim($ids, ',');
-    $cartQuery = "SELECT * FROM `product` WHERE product_id IN (" . implode(',', $_SESSION['cart']) . ") ";
-    $cartresult = $con->query($cartQuery);
+    $query = "SELECT * FROM `product` WHERE product_id IN (" . implode(',', $_SESSION['cart']) . ") ";
+    $result = $con->query($query);
 }
 
 ?>
@@ -334,28 +334,40 @@ if (!empty($_SESSION['cart'])) {
                     </th>
                 </tr>
                 <?php if (!empty($_SESSION['cart'])) {
-                    while ($row = mysqli_fetch_assoc($cartresult)) {
+                    while ($row = mysqli_fetch_assoc($result)) {
 
                         ?>
 
                         <tr>
-                            <?php echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 5%;' />"; ?>
-                            <div class="col">
-                                <h6><?php echo $row['category']; ?></h6>
-                                <h5><?php echo $row['title']; ?></h5>
-                            </div>
+                            <td>
+                                <div class="col">
+                                    <h6><?php echo $row['category']; ?></h6>
+                                    <h5><?php echo $row['title']; ?></h5>
+                                </div>
+                                <?php echo "<img src=" . '../includes/images/' . $row['image'] . " style='width: 10%;' />"; ?>
+                            </td>
+
                         </tr>
                         <?php
                     }
                 }
                 ?>
+                <?php
+                error_reporting(0);
+                ini_set('display_errors', 0);
+                $total += $row['price'];
+                ?>
                 <tr>
                     <td>Subtotal</td>
-                    <td>$88.00</td>
+                    <td>$<?php echo $total; ?></td>
                 </tr>
                 <tr>
                     <td>Shipping</td>
                     <td>Free shipping</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>dd</td>
                 </tr>
             </table>
             <br>

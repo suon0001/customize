@@ -11,7 +11,7 @@ CREATE TABLE `users`
     `user_type`  varchar(20) NOT NULL
 ) ENGINE = InnoDB;
 
-CREATE TABLE CreditCard
+CREATE TABLE creditCard
 (
     pay_id     INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     cardholder VARCHAR(255) NULL,
@@ -28,7 +28,7 @@ CREATE TABLE Images
 ) ENGINE = InnoDB;
 
 
-CREATE TABLE Product
+CREATE TABLE product
 (
     product_id  INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title       VARCHAR(255) NULL,

@@ -6,6 +6,7 @@ if (!isset($_SESSION)) {
 
 include "db/connection.php";
 
+$status="";
 
 if (!empty($_SESSION['cart'])) {
     $ids = "";
@@ -13,24 +14,10 @@ if (!empty($_SESSION['cart'])) {
         $ids = $ids . $id . ",";
     }
     $ids = rtrim($ids, ',');
-
-    $cartQuery = "SELECT * FROM `product` WHERE product_id";
-    $cartresult = $con->query($cartQuery);
+    $query = "SELECT * FROM `product` WHERE product_id IN (" . implode(',', $_SESSION['cart']) . ") ";
+    $result = $con->query($query);
 }
-if (isset($_GET['action'])) {
-    if ($_GET['action'] == "deleted") {
-        foreach ($_SESSION['shopping_cart'] as $key => $value) {
-            if ($value['product_id'] == $_GET['id']) {
-                unset($_SESSION['shopping_cart'][$key]);
-                echo '<script>alert("Item removed successfully")</script>';
-                echo '<script>window.location="products.php"</script>';
-            }
-        }
-    }
-}
-
-
-include "view/navigation.php";
+include ("view/navigation.php")
 ?>
 
 <!doctype html>
@@ -40,28 +27,17 @@ include "view/navigation.php";
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cart</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="ajax/ajax.js"></script>
+    <title>Document</title>
 </head>
-<body class="bg-light">
-
+<body>
 
 <div class="container-fluid">
     <?php echo "<h1>You have " . count($_SESSION['cart']) . " items in your cart</h1>" ?>
     <?php if (!empty($_SESSION['cart'])) {
-
-    while ($row = mysqli_fetch_assoc($cartresult)) { ?>
+    while ($row = mysqli_fetch_assoc($result)) { ?>
     <div class="row px-5">
-
         <div class="col-md-7">
-
             <div class="shopping-cart">
                 <hr>
                 <div class="row main align-items-center">
@@ -130,7 +106,5 @@ include "view/navigation.php";
 
 </div>
 
-
 </body>
-
 </html>

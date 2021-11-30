@@ -17,23 +17,20 @@ session_start();
     <title>User</title>
 </head>
 <body>
-<?php if (isset($_SESSION['success'])) : ?>
-    <div class="error success" >
-        <h3>
-            <?php
-            echo $_SESSION['success'];
-            unset($_SESSION['success']);
-            ?>
-        </h3>
-    </div>
-<?php endif ?>
+<div>
+    <?php  if (isset($_SESSION['user'])) : ?>
+        <strong><?php echo $_SESSION['user']['username']; ?></strong>
 
-<!-- information of the user logged in -->
-<!-- welcome message for the logged in user -->
+        <small>
+            <i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i>
+            <br>
+            <a href="../controller/logout.php?logout='1'" style="color: red;">logout</a>
+        </small>
+
+    <?php endif ?>
+</div>
+
 <?php  if (isset($_SESSION['username'])) : ?>
-
-
-
     <p>
         Welcome
         <strong>
@@ -41,24 +38,17 @@ session_start();
         </strong>
     </p>
 
-
-
-
-
-
     <p>
-        <a href="index.php?logout='1'" style="color: red;">
+        <a href="../controller/logout.php?logout='1'" style="color: red;">
             Click here to Logout
         </a>
     </p>
-
-
 
 <?php endif ?>
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            Product View
+            <a href="viewProduct.php">Product View</a>
         </div>
         <div class="col-sm">
             Order View

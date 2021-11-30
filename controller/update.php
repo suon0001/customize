@@ -2,41 +2,35 @@
 require_once("../db/connection.php");
 if (isset($_POST['update'])) {
     $product_id = $_SERVER['QUERY_STRING'];
-    $title = $_POST['title'];
-    $type = $_POST['type'];
-    $description = $_POST['description'];
-    $category = $_POST['category'];
-    $color = $_POST['color'];
-    $price = $_POST['price'];
-    $stock = $_POST['stock'];
+    $title = mysqli_real_escape_string($con, $_POST['title']);
+    $type = mysqli_real_escape_string($con, $_POST['type']);
+    $description = mysqli_real_escape_string($con, $_POST['description']);
+    $category = mysqli_real_escape_string($con, $_POST['category']);
+    $color = mysqli_real_escape_string($con, $_POST['color']);
+    $price = mysqli_real_escape_string($con, $_POST['price']);
+    $stock = mysqli_real_escape_string($con, $_POST['stock']);
 
     $filename = $_FILES["image"]["name"];
 
-    //var_dump($_FILES);
-    $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-    $extensions_arr = array("jpg", "jpeg", "png", "gif");
 
-    if (in_array($imageFileType, $extensions_arr)) {
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], '../includes/db/images/' . $filename)) {
-            echo "image uploaded";
-            header("Location: ../admin/viewProduct.php");
-        } else {
-            echo "error";
-        }
-    }
+    $file = $_FILES["image"]["name"];
 
+    $filename = strtolower($file);
 
-    $query = "UPDATE `product` SET `title` ='" . $title . "', `type` ='" . $type . "', `description` ='" . $description . "', 
-    `category` ='" . $category . "', `color` ='" . $color . "', `price` ='" . $price . "', `stock` ='" . $stock . "', `image` ='" . $filename . "' WHERE `product_id` = '" . $product_id . "'";
-    $result = mysqli_query($con, $query);
-
-    if ($result) {
-        header("Location: ../admin/viewProduct.php");
+    if (file_exists("../includes/images/" . $_FILES['image']['name'])) {
+        echo "can't upload: " . $_FILES['image']['name'] . " Exists";
     } else {
-        echo 'please check query';
+        move_uploaded_file($_FILES['image']['tmp_name'],
+            "../includes/images/" . $_FILES['image']['name']);
+        header("Location: ../admin/viewProduct.php");
+        $query = "UPDATE `product` SET `title` ='" . $title . "', `type` ='" . $type . "', `description` ='" . $description . "', 
+    `category` ='" . $category . "', `color` ='" . $color . "', `price` ='" . $price . "', `stock` ='" . $stock . "', `image` ='" . $filename . "' WHERE `product_id` = '" . $product_id . "'";
+        $result = mysqli_query($con, $query);
+
     }
+
 } else {
     header("Location: ../admin/viewProduct.php");
-}
 
+}
 
