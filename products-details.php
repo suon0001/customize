@@ -30,7 +30,7 @@ $result2 = mysqli_query($con, $query2);
 
     <div class="left-column">
         <?php
-        echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 80%;' />";
+        echo "<img src=" . './includes/images/' . $row['image'] . " style='width: 80%;' />";
         ?>
     </div>
 
@@ -60,7 +60,7 @@ $result2 = mysqli_query($con, $query2);
         <?php while ($row = mysqli_fetch_assoc($result2)) { ?>
             <div class="col-4">
                 <?php
-                echo "<img src=" . './includes/db/images/' . $row['image'] . " style='width: 50%;' />";
+                echo "<img src=" . './includes/images/' . $row['image'] . " style='width: 50%;' />";
                 ?>
                 <h4><?php echo $row['title']; ?></h4>
                 <div class="rating">
@@ -76,15 +76,8 @@ $result2 = mysqli_query($con, $query2);
     </div>
 </div></div>
 
-<?php include("footer.php"); ?>
+<?php include("view/footer.php"); ?>
 <style>
-    html, body {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        font-family: 'Roboto', sans-serif;
-    }
-
     .container {
         max-width: 1200px;
         margin: 0 auto;

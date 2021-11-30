@@ -1,22 +1,48 @@
 <?php
+
 require_once("../db/connection.php");
 require("../includes/function.php");
+
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password_1 = mysqli_real_escape_string($con, $_POST['password_1']);
+    $password_2 = mysqli_real_escape_string($con, $_POST['password_2']);
 
-    if (!empty($username) && !empty($password) && !is_numeric($username)) {
 
-        //save to database
-        $user_id = random_num(20);
-        $query = "INSERT INTO login (username, password, user_type) VALUES ('$username', '$hashed_password', 0)";
+    if (empty($username)) {
+        array_push($errors, "Username is required");
+    }
+    if (empty($email)) {
+        array_push($errors, "Email is required");
+    }
+    if (empty($password_1)) {
+        array_push($errors, "Password is required");
+    }
+
+    if ($password_1 != $password_2) {
+        array_push($errors, "The two passwords do not match");
+
+    }
+
+    if (count($errors) == 0) {
+
+
+        $password = md5($password_1);
+
+
+        $query = "INSERT INTO users (username, email, password, user_type) VALUES('$username', '$email', '$password', 'user')";
+
         mysqli_query($con, $query);
 
-        header("Location: ../view/login.php");
-        die;
-    } else {
-        echo "Please into some valid information!";
+
+        $_SESSION['username'] = $username;
+
+
+        $_SESSION['success'] = "You have logged in";
+
+        header('location: ../login.php');
     }
 }

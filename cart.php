@@ -14,7 +14,7 @@ if (!empty($_SESSION['cart'])) {
     }
     $ids = rtrim($ids, ',');
 
-    $cartQuery = "SELECT * FROM `product` WHERE product_id ";
+    $cartQuery = "SELECT * FROM `product` WHERE product_id";
     $cartresult = $con->query($cartQuery);
 }
 if (isset($_GET['action'])) {
@@ -56,9 +56,12 @@ include "view/navigation.php";
 <div class="container-fluid">
     <?php echo "<h1>You have " . count($_SESSION['cart']) . " items in your cart</h1>" ?>
     <?php if (!empty($_SESSION['cart'])) {
+
     while ($row = mysqli_fetch_assoc($cartresult)) { ?>
     <div class="row px-5">
+
         <div class="col-md-7">
+
             <div class="shopping-cart">
                 <hr>
                 <div class="row main align-items-center">

@@ -2,12 +2,13 @@ DROP DATABASE IF EXISTS webshopDB;
 CREATE DATABASE webshopDB;
 USE webshopDB;
 
-CREATE TABLE Login
+CREATE TABLE `users`
 (
-    login_id  INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username  VARCHAR(255) NULL,
-    password  VARCHAR(255) NULL,
-    user_type BOOLEAN      NOT NULL
+    `id`       int(11)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `username` varchar(100) NOT NULL,
+    `email`    varchar(100) NOT NULL,
+    `password` varchar(100) NOT NULL,
+    `user_type`  varchar(20) NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE CreditCard
@@ -18,18 +19,6 @@ CREATE TABLE CreditCard
     month      INT          NULL,
     year       INT          NULL,
     valid      VARCHAR(20)
-) ENGINE = InnoDB;
-
-CREATE TABLE User
-(
-    user_id  INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name     VARCHAR(255) NULL,
-    email    VARCHAR(255) NULL,
-    phone    VARCHAR(50),
-    login_id INT          NOT NULL,
-    pay_id   INT          NOT NULL,
-    FOREIGN KEY (login_id) REFERENCES Login (login_id),
-    FOREIGN KEY (pay_id) REFERENCES CreditCard (pay_id)
 ) ENGINE = InnoDB;
 
 CREATE TABLE Images

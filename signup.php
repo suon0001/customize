@@ -12,6 +12,7 @@ include "view/navigation.php";
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
     <title>Signup</title>
 </head>
 <body>
@@ -20,10 +21,18 @@ include "view/navigation.php";
     <form action="controller/register.php" method="post">
         <h4>SIGNUP</h4> <br>
         <div class="row">
-            <input type="name" name="username">
-            <input type="password" name="password">
-            <input id="button" type="submit" value="Signup"><br>
-            <a href="login.php">Login</a><br><br>
+            <label>Enter Username</label>
+            <input type="text" name="username"
+                   value="">
+            <label>Email</label>
+            <input type="email" name="email"
+                   value="">
+            <label>Confirm password</label>
+            <input type="password" name="password_1">
+            <label>Confirm password</label>
+            <input type="password" name="password_2">
+            <button type="submit" class="btn" name="reg_user"> Register</button>
+            <p> Already having an account? <a href="login.php"> Login Here!</a></p>
             <a href="">Forgot password?</a><br><br>
         </div>
     </form>
@@ -65,10 +74,6 @@ include "view/navigation.php";
 </style>
 </body>
 </html>
-
-
-
-
 
 
 

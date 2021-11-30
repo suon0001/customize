@@ -20,9 +20,11 @@ include "view/navigation.php"
     <form action="controller/loginController.php" method="post">
         <h4>ACCOUNT</h4> <br>
         <div class="row">
-            <input type="name" name="username">
+            <label>Enter Username</label>
+            <input type="text" name="username" >
+            <label>Enter Password</label>
             <input type="password" name="password">
-            <input id="button" type="submit" value="Login"><br>
+            <button type="submit" class="btn" name="login_user"> Login </button>
             <a href="signup.php">Make a account</a><br><br>
             <a href="">Forgot password?</a><br><br>
         </div>
