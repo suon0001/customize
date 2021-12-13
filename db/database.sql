@@ -4,29 +4,12 @@ USE webshopDB;
 
 CREATE TABLE `users`
 (
-    `id`       int(11)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id`       int      NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `username` varchar(100) NOT NULL,
     `email`    varchar(100) NOT NULL,
     `password` varchar(100) NOT NULL,
     `user_type`  varchar(20) NOT NULL
 ) ENGINE = InnoDB;
-
-CREATE TABLE creditCard
-(
-    pay_id     INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    cardholder VARCHAR(255) NULL,
-    cardnumber VARCHAR(255) NULL,
-    month      INT          NULL,
-    year       INT          NULL,
-    valid      VARCHAR(20)
-) ENGINE = InnoDB;
-
-CREATE TABLE Images
-(
-    images_id INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    filename  VARCHAR(255) NULL
-) ENGINE = InnoDB;
-
 
 CREATE TABLE product
 (
@@ -48,11 +31,24 @@ CREATE TABLE address
     firstName VARCHAR(255) NULL,
     lastName  VARCHAR(255) NULL,
     company   VARCHAR(255) NULL,
-    country   VARCHAR(244) NULL,
-    street    VARCHAR(244) NULL,
-    city      VARCHAR(244) NULL,
+    country   VARCHAR(255) NULL,
+    street    VARCHAR(255) NULL,
+    city      VARCHAR(255) NULL,
     postcode  INT          NOT NULL,
-    state     VARCHAR(244) NULL,
-    phone     VARCHAR(244) NULL,
-    email     VARCHAR(244) NULL
+    state     VARCHAR(255) NULL,
+    phone     VARCHAR(50) NULL,
+    email     VARCHAR(255) NULL
 ) ENGINE = InnoDB;
+
+CREATE TABLE orderDetails (
+                         orders INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                         Name VARCHAR(255),
+                         id INT NOT NULL,
+                         product_id INT NOT NULL,
+                         FOREIGN KEY (id) REFERENCES users (id),
+                         FOREIGN KEY (product_id) REFERENCES product (product_id)
+); ENGINE = InnoDB;
+
+
+CREATE VIEW featuredProducts AS SELECT * FROM product WHERE `type` = 'featured';
+CREATE VIEW danishPeople AS SELECT * FROM address WHERE `country` = 'denmark';

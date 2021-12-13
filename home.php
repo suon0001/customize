@@ -7,7 +7,7 @@ include "db/connection.php";
 $product = $_SERVER['QUERY_STRING'];
 
 $featured_query = "SELECT * FROM product WHERE type = 'featured'LIMIT 3";
-$latest_query = "SELECT * FROM product WHERE type = 'latest' LIMIT 3";
+$latest_query = "SELECT * FROM product ORDER BY time_date DESC LIMIT 8";
 $result = mysqli_query($con, $featured_query);
 $result2 = mysqli_query($con, $latest_query);
 
@@ -28,7 +28,8 @@ include "view/navigation.php";
 <body>
 <section class="header">
     <h1>CUSTOMIZE</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br> incididunt ut labore et dolore magna aliqua.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br> incididunt ut labore et
+        dolore magna aliqua.</p>
     <a class="btn-bgstroke">More info</a>
 </section>
 
@@ -57,41 +58,44 @@ include "view/navigation.php";
     <div class="row">
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
             <div class="col-4">
-                <?php
-                echo "<img src=" . 'includes/images/' . $row['image'] . " style='width: 85%;' />";
-                ?>
-                <h4><?php echo $row['title']; ?></h4>
+                <div class="img-thumbnail"> <?php
+                    echo "<img src=" . 'includes/images/' . $row['image'] . " style='width: 100%;' />";
+                    ?>
+                </div>
+                <h4><a href="products-details.php?<?php echo $row['product_id']; ?>"><?php echo $row['title']; ?></a>
+                </h4>
                 <div class="rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i> <br>
+                    <a href="products-details.php?<?php echo $row['product_id']; ?>">Click Here</a>
                     <p>$<?php echo $row['price']; ?></p>
                 </div>
             </div>
         <?php } ?>
     </div>
 </div>
-</div>
 <div class="small-container">
     <h2 class="title">Latest Products</h2>
     <div class="row product-item">
         <?php while ($row = mysqli_fetch_assoc($result2)) { ?>
             <div class="col-4">
-                <div class="">
-                    <?php
-                    echo "<img src=" . 'includes/images/' . $row['image'] . " style='width: 85%;' />";
+                <div class="img-thumbnail"> <?php
+                    echo "<img src=" . 'includes/images/' . $row['image'] . " style='width: 100%;' />";
                     ?>
                 </div>
 
-                <h4><?php echo $row['title']; ?></h4>
+                <h4><a href="products-details.php?<?php echo $row['product_id']; ?>"><?php echo $row['title']; ?></a>
+                </h4>
                 <div class="rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i> <br>
+                    <a href="products-details.php?<?php echo $row['product_id']; ?>">Click Here</a>
                     <p>$<?php echo $row['price']; ?></p>
                 </div>
             </div>
@@ -100,7 +104,7 @@ include "view/navigation.php";
 </div>
 
 <div class="offer">
-    <div class="small-container">
+    <div class="align-self-center">
         <div class="row">
 
             <img class="controller"
@@ -125,7 +129,7 @@ include "view/navigation.php";
 <style>
     .header {
         width: 100%;
-        padding:60px 0;
+        padding: 60px 0;
         text-align: center;
         background: #789bbe;
         color: white;

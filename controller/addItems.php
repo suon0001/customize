@@ -21,9 +21,7 @@ if (isset($_POST['submit'])) {
 
         $filename = strtolower($file);
 
-        if (file_exists("../includes/images/" . $_FILES['image']['name'])) {
-            echo "can't upload: " . $_FILES['image']['name'] . " Exists";
-        } else {
+        if ($_FILES['image']['name']){
             move_uploaded_file($_FILES['image']['tmp_name'],
                 "../includes/images/" . $_FILES['image']['name']);
             header("Location: ../admin/viewProduct.php");

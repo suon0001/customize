@@ -31,8 +31,11 @@ $result = mysqli_query($con, $query);
             <option value="Recommend">Recommend</option>
         </select><br><br>
 
-        <label for="description">Description</label> <br>
-        <input type="text" name="description" value="<?php echo $row['description']; ?>"> <br> <br>
+
+        <label for="description" class="form-label">Description</label> <br>
+        <textarea class="form-control" name="description" rows="3" value="<?php echo $row['description']; ?>"></textarea>
+        <br>
+        <br>
 
         <label for="category">Category</label><br>
         <select name="category">
@@ -53,7 +56,7 @@ $result = mysqli_query($con, $query);
         <input type="number" name="stock" value="<?php echo $row['stock'] ?>"> <br> <br>
 
         <label for="image">Add image</label>
-        <input type="file" name="image" id="image" value="<?php echo $row['image'] ?>" />
+        <input type="file" name="image" value="<?php echo $row['image']; ?>" />
 
         <input type="submit" name="update" value="Update">
         <a href="viewProduct.php"><input type="button" name="cancel" value="Cancel"></a>

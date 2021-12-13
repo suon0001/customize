@@ -39,9 +39,11 @@ $result = mysqli_query($con, $query);
             <div class="row">
                 <div class="col-sm-6">
                     <h2>Manage <b>Orders</b></h2>
-
                 </div>
-
+            </div>
+            <div>
+                <a href="adminView.php" class="btn bg-danger align-middle" ><i
+                            class="fa fa-arrow-left"></i> <span>Return</span></a>
             </div>
         </div>
         <table class="table table-striped table-hover">
@@ -81,7 +83,7 @@ $result = mysqli_query($con, $query);
                     <td><?php echo $row["state"]; ?></td>
                     <td><?php echo $row["phone"]; ?></td>
                     <td><?php echo $row["email"]; ?></td>
-                   <td>
+                    <td>
 
                         <a href="#">View</a>
                     </td>

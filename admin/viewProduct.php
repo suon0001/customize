@@ -28,27 +28,12 @@ $result = mysqli_query($con, $query);
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="ajax/ajax.js"></script>
 </head>
 <body>
-<div class="profile_info">
-    <img src="images/user_profile.png"  >
-
-    <div>
-        <?php  if (isset($_SESSION['user'])) : ?>
-            <strong><?php echo $_SESSION['user']['username']; ?></strong>
-
-            <small>
-                <i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i>
-                <br>
-                <a href="adminView.php" style="color: red;">Return</a>
-            </small>
-
-        <?php endif ?>
-    </div>
 <div class="container">
     <p id="success"></p>
     <div class="table-wrapper">
@@ -57,9 +42,12 @@ $result = mysqli_query($con, $query);
                 <div class="col-sm-6">
                     <h2>Manage <b>Product</b></h2>
                     <div>
-                        <a href="#addEmployeeModal"  class="btn bg-info align-middle" data-toggle="modal"><i
-                                    class="material-icons"></i> <span>Add New Product</span></a>
+                        <a href="#addEmployeeModal" class="btn bg-info align-middle" data-toggle="modal"><i
+                                    class="fa fa-plus"></i> <span>Add New Product</span></a>
+                        <a href="adminView.php" class="btn bg-danger align-middle" ><i
+                                    class="fa fa-arrow-left"></i> <span>Return</span></a>
                     </div>
+
                 </div>
 
             </div>
@@ -103,8 +91,10 @@ $result = mysqli_query($con, $query);
                     </td>
                     <td><?php echo $row["image"]; ?></td>
                     <td>
-                        <a href="editProduct.php?GetID=<?php echo $row['product_id']?>" class="edit"><i class="material-icons update" title="Edit"></i></a>
-                        <a href="../controller/delete.php?<?php echo $row['product_id']?>" class="delete" data-id="<?php echo $row["product_id"]; ?>"
+                        <a href="editProduct.php?GetID=<?php echo $row['product_id'] ?>" class="edit"><i
+                                    class="material-icons update" title="Edit"></i></a>
+                        <a href="../controller/delete.php?<?php echo $row['product_id'] ?>" class="delete"
+                           data-id="<?php echo $row["product_id"]; ?>"
                            data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
                                                   title="Delete"></i></a>
                     </td>
@@ -142,8 +132,9 @@ $result = mysqli_query($con, $query);
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Description</label>
-                        <input type="text" id="description" name="description" class="form-control" required>
+                        <label for="description" class="form-label">Example textarea</label>
+                        <textarea class="form-control" name="description" rows="3"></textarea>
+
                     </div>
 
                     <div class="form-group">

@@ -10,7 +10,7 @@ include "db/connection.php";
 $query = "SELECT * FROM product WHERE product_ID = $product";
 $result = mysqli_query($con, $query);
 
-$query2 = "SELECT * FROM product WHERE type = 'recommend' ORDER BY RAND() LiMIT 3";
+$query2 = "SELECT * FROM product ORDER BY RAND() LiMIT 4";
 
 $result2 = mysqli_query($con, $query2);
 ?>
@@ -26,55 +26,66 @@ $result2 = mysqli_query($con, $query2);
 </head>
 <body>
 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-<main class="container">
-
-    <div class="left-column">
-        <?php
-        echo "<img src=" . './includes/images/' . $row['image'] . " style='width: 80%;' />";
-        ?>
-    </div>
-
-
-    <div class="right-column">
-
-        <div class="product-description">
-            <span><?php echo $row['category']; ?></span>
-
-            <h1><?php echo $row['title']; ?></h1>
-            <p><?php echo $row['description']; ?></p>
+    <main class="container">
+        <div class="left-column">
+            <?php
+            echo "<img src=" . './includes/images/' . $row['image'] . " style='width: 80%;' />";
+            ?>
         </div>
-
-        <div class="product-price">
-            <h4>$<?php echo $row['price']; ?></h4>
-            <a href="#" class="cart-btn">Add to cart</a>
+        <div class="right-column">
+            <div class="product-description">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <span><?php echo $row['category']; ?></span></li>
+                        <li class="breadcrumb-item active" aria-current="page"><span><?php echo $row['type']; ?></span>
+                        </li>
+                    </ol>
+                </nav>
+                <h1><?php echo $row['title']; ?></h1>
+                <p><?php echo $row['description']; ?></p>
+            </div>
+            <span class="dot" style="background-color: <?php echo $row['color']; ?>"><span style="visibility: hidden">xxx</span></span>
+            <div class="product-price">
+                <h4>$<?php echo $row['price']; ?></h4>
+                <a class="button" href="controller/addCart.php?<?php echo $row['product_id']; ?>">Add
+                    to Cart</a>
+                <a class="button" href="controller/buyNow.php?<?php echo $row['product_id']; ?>">
+                    Buy Now</a>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 
 <?php } ?>
 
+<h5 class="title">Recommend Products</h5>
+<div class="container">
 
-<div class="small-container">
-    <h2 class="title">Recommend Products</h2>
     <div class="row product-item">
         <?php while ($row = mysqli_fetch_assoc($result2)) { ?>
             <div class="col-4">
-                <?php
-                echo "<img src=" . './includes/images/' . $row['image'] . " style='width: 50%;' />";
-                ?>
-                <h4><?php echo $row['title']; ?></h4>
+                <div class="imageSize"> <?php
+                    echo "<img src=" . 'includes/images/' . $row['image'] . " style='object-fit:cover;' />";
+                    ?>
+                </div>
+
+                <h4><a href="products-details.php?<?php echo $row['product_id']; ?>"><?php echo $row['title']; ?></a>
+                </h4>
                 <div class="rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i> <br>
+                    <a href="products-details.php?<?php echo $row['product_id']; ?>">Click Here</a>
                     <p>$<?php echo $row['price']; ?></p>
                 </div>
             </div>
         <?php } ?>
     </div>
-</div></div>
+</div>
+
 
 <?php include("view/footer.php"); ?>
 <style>
@@ -101,7 +112,10 @@ $result2 = mysqli_query($con, $query2);
         top: 0;
     }
 
-
+    .imageSize {
+        width: 50%;
+        height: 50%;
+    }
 
 
 </style>
