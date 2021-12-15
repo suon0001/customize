@@ -18,8 +18,8 @@
                     <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
                     <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
                     <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-reddit"></i></a></li>
-                    <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-twitch"></i></a></li>
+                    <li class="list-inline-item"><a href="#" target="_blank" title="reddit"><i class="fa fa-reddit"></i></a></li>
+                    <li class="list-inline-item"><a href="#" target="_blank" title="twitch"><i class="fa fa-twitch"></i></a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">

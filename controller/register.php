@@ -4,7 +4,7 @@ require_once("../db/connection.php");
 require("../includes/function.php");
 
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+if (isset($_POST['submit'])) {
 
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);

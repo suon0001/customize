@@ -48,7 +48,6 @@ include("view/navigation.php")
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>NO</th>
                 <th>Image</th>
                 <th>Title</th>
                 <th>Category</th>
@@ -65,9 +64,8 @@ include("view/navigation.php")
                     $i = 1; ?>
                     <tr id="<?php echo $row["product_id"]; ?>">
 
-                        <td><?php echo $i; ?></td>
                         <td class="w-25 p-3"> <?php echo "<img src=" . './includes/images/' . $row['image'] . " style='width: 25%;' />"; ?></td>
-                        <td><?php echo $row["type"]; ?></td>
+                        <td><?php echo $row["title"]; ?></td>
                         <td><?php echo $row["category"]; ?></td>
                         <td><?php echo $row["color"]; ?></td>
                         <td><?php echo $row["price"]; ?></td>
@@ -78,6 +76,7 @@ include("view/navigation.php")
                         ini_set('display_errors', 0);
                         $total += $row['price'];
                         ?>
+
                     </tr>
                     <?php
                     $i++;

@@ -4,11 +4,11 @@ USE webshopDB;
 
 CREATE TABLE `users`
 (
-    `id`       int      NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `username` varchar(100) NOT NULL,
-    `email`    varchar(100) NOT NULL,
-    `password` varchar(100) NOT NULL,
-    `user_type`  varchar(20) NOT NULL
+    `id`        int          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `username`  varchar(100) NOT NULL,
+    `email`     varchar(100) NOT NULL,
+    `password`  varchar(100) NOT NULL,
+    `user_type` varchar(20)  NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE product
@@ -36,19 +36,27 @@ CREATE TABLE address
     city      VARCHAR(255) NULL,
     postcode  INT          NOT NULL,
     state     VARCHAR(255) NULL,
-    phone     VARCHAR(50) NULL,
+    phone     VARCHAR(50)  NULL,
     email     VARCHAR(255) NULL
 ) ENGINE = InnoDB;
 
-CREATE TABLE orderDetails (
-                         orders INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                         Name VARCHAR(255),
-                         id INT NOT NULL,
-                         product_id INT NOT NULL,
-                         FOREIGN KEY (id) REFERENCES users (id),
-                         FOREIGN KEY (product_id) REFERENCES product (product_id)
-); ENGINE = InnoDB;
+CREATE TABLE orderDetails
+(
+    order_id     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name       VARCHAR(255),
+    id         INT NOT NULL,
+    product_id INT NOT NULL,
+    FOREIGN KEY (id) REFERENCES address (id),
+    FOREIGN KEY (product_id) REFERENCES product (product_id)
+);
+ENGINE = InnoDB;
 
 
-CREATE VIEW featuredProducts AS SELECT * FROM product WHERE `type` = 'featured';
-CREATE VIEW danishPeople AS SELECT * FROM address WHERE `country` = 'denmark';
+CREATE VIEW featuredProducts AS
+SELECT *
+FROM product
+WHERE `type` = 'featured';
+CREATE VIEW danishPeople AS
+SELECT *
+FROM address
+WHERE `country` = 'denmark';

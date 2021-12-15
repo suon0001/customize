@@ -28,12 +28,8 @@
     </select><br><br>
 
 
-
-
         <label for="description" class="form-label">Example textarea</label>
         <textarea class="form-control" name="description" rows="3"></textarea>
-
-
 
     <label for="category">Category</label><br>
     <select name="category">

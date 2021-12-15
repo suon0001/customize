@@ -81,7 +81,7 @@ include 'view/navigation.php'
                     <tr id="<?php echo $row["product_id"]; ?>">
 
                         <td><?php echo $i; ?></td>
-                        <tds><?php echo $row["title"]; ?></tds>
+                        <td><?php echo $row["title"]; ?></td>
                         <td><?php echo $row["type"]; ?></td>
                         <td><?php echo $row["category"]; ?></td>
                         <td><?php echo $row["color"]; ?></td>

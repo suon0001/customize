@@ -2,9 +2,9 @@
 require_once("../db/connection.php");
 
 if (isset($_POST['submit'])) {
-    if (empty($_POST['firstName']) || empty($_POST['lastName']) || empty($_POST['company']) || empty($_POST['country']) ||
+    if (empty($_POST['firstName']) || empty($_POST['lastName']) || empty($_POST['country']) ||
         empty($_POST['street']) || empty($_POST['city']) || empty($_POST['postcode']) ||
-        empty($_POST['state']) || empty($_POST['phone']) || empty($_POST['email'])) {
+        empty($_POST['phone']) || empty($_POST['email'])) {
         echo 'Please fill in the blanks';
     } else {
 
@@ -22,17 +22,19 @@ if (isset($_POST['submit'])) {
 
     }
 
-    $query = "INSERT INTO address(firstName, lastName, company, country, street, city, postcode, state, phone, email) VALUES ('$firstName', '$lastName','€company', '$country', '$street', '$city', '$postcode', '$state', '$phone', '$email')";
+    $query = "INSERT INTO address(firstName, lastName, company, country, street, city, postcode, state, phone, email) VALUES ('$firstName', '$lastName','€company', '$country', '$street', '$city', '$postcode', '', '$phone', '$email')";
     $result = mysqli_query($con, $query);
     if ($result) {
-        header("Location: ../admin/orderList.php");
+        header("Location: ../end.php");
     } else {
-        echo 'Please check your query';
+        header("Location: ../payment.php");
+        echo  'Please check your query';
+
     }
 
 
 } else {
-    header("Location: ../admin/orderList.php");
+    header("Location: ../payment.php");
 
 }
 

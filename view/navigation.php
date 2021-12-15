@@ -29,7 +29,7 @@ if(!isset($_SESSION))
         <ul id="MenuItems">
             <li><a href="home.php">HOME</a></li>
             <li><a href="products.php">PRODUCTS</a></li>
-            <li><a href="">CUSTOMIZE</a></li>
+<!--         <li><a href="">CUSTOMIZE</a></li>-->
             <li><a href=contact.php>CONTACT</a></li>
             <li><a href="login.php">LOGIN</a></li>
         </ul>

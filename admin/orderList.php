@@ -57,8 +57,7 @@ $result = mysqli_query($con, $query);
                 <th>Street</th>
                 <th>Address</th>
                 <th>City</th>
-                <th>Postcode</th>
-                <th>State</th>
+                <th>Postelcode</th>
                 <th>Phone</th>
                 <th>Email</th>
 

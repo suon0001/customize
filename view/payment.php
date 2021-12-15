@@ -339,14 +339,9 @@ if (!empty($_SESSION['cart'])) {
                         ?>
 
                         <tr>
-                            <td>
-                                <div class="col">
-                                    <h6><?php echo $row['category']; ?></h6>
-                                    <h5><?php echo $row['title']; ?></h5>
-                                </div>
-                                <?php echo "<img src=" . '../includes/images/' . $row['image'] . " style='width: 10%;' />"; ?>
-                            </td>
-
+                            <td><?php echo "<img src=" . '../includes/images/' . $row['image'] . " style='width: 50%;' />"; ?></td>
+                            <td><h5 class="text-left"><?php echo $row['title']; ?></h5></td>
+                            <td><h5>$<?php echo $row['price']; ?></h5></td>
                         </tr>
                         <?php
                     }
@@ -357,18 +352,24 @@ if (!empty($_SESSION['cart'])) {
                 ini_set('display_errors', 0);
                 $total += $row['price'];
                 ?>
-                <tr>
-                    <td>Subtotal</td>
-                    <td>$<?php echo $total; ?></td>
-                </tr>
-                <tr>
-                    <td>Shipping</td>
-                    <td>Free shipping</td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td>dd</td>
-                </tr>
+                <?php if (!empty($_SESSION['cart'])) { ?>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td></td>
+                        <td class="text-right">$<?php echo $row['price']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <td></td>
+                        <td class="text-right">$<?php echo $charge = 18; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <td class="text-right">$<?php
+                            echo $total + $charge; ?></td>
+                    </tr>
+                <?php } ?>
             </table>
             <br>
             <div>
