@@ -65,7 +65,7 @@ include("view/navigation.php")
                     <tr id="<?php echo $row["product_id"]; ?>">
 
                         <td class="w-25 p-3"> <?php echo "<img src=" . './includes/images/' . $row['image'] . " style='width: 25%;' />"; ?></td>
-                        <td><?php echo $row["title"]; ?></td>
+                        <td><a href="products-details.php?<?php echo $row['product_id']; ?>"><?php echo $row['title']; ?></a></td>
                         <td><?php echo $row["category"]; ?></td>
                         <td><?php echo $row["color"]; ?></td>
                         <td><?php echo $row["price"]; ?></td>

@@ -22,9 +22,10 @@
     <label for="type">Device</label><br>
     <select name="type">
         <option value="">--- Choose a Type ---</option>
-        <option value="Latest">Latest</option>
-        <option value="Featured">Featured</option>
-        <option value="Recommend">Recommend</option>
+        <option value="Playstation">Playstation</option>
+        <option value="XBOX">XBOX</option>
+        <option value="Nintendo">Nintendo</option>
+        <option value="PC">PC</option>
     </select><br><br>
 
 

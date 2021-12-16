@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-include "../view/navigation.php"
 ?>
 
 <!doctype html>

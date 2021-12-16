@@ -4,45 +4,22 @@ require_once("../db/connection.php");
 require("../includes/function.php");
 
 
-if (isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $username = trim(mysqli_real_escape_string($con, $_POST['username']));
+    $email = trim(mysqli_real_escape_string($con, $_POST['email']));
+    $password_1 = trim(mysqli_real_escape_string($con, $_POST['password_1']));
+    $password_2 =trim(mysqli_real_escape_string($con, $_POST['password_2']));
 
-    $username = mysqli_real_escape_string($con, $_POST['username']);
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password_1 = mysqli_real_escape_string($con, $_POST['password_1']);
-    $password_2 = mysqli_real_escape_string($con, $_POST['password_2']);
+    $iterations = ['cost' => 15];
 
+    $hashed_password = password_hash($password_1, PASSWORD_BCRYPT, $iterations);
 
-    if (empty($username)) {
-        array_push($errors, "Username is required");
-    }
-    if (empty($email)) {
-        array_push($errors, "Email is required");
-    }
-    if (empty($password_1)) {
-        array_push($errors, "Password is required");
-    }
+    $query = "INSERT INTO users (username, email, password, user_type) VALUES('$username', '$email', '$hashed_password', 'user')";
 
-    if ($password_1 != $password_2) {
-        array_push($errors, "The two passwords do not match");
-
-    }
-
-    if (count($errors) == 0) {
-
-
-        $password = md5($password_1);
-
-
-        $query = "INSERT INTO users (username, email, password, user_type) VALUES('$username', '$email', '$password', 'user')";
-
-        mysqli_query($con, $query);
-
-
-        $_SESSION['username'] = $username;
-
-
-        $_SESSION['success'] = "You have logged in";
-
+    $result = mysqli_query($con, $query);
+    if ($result) {
         header('location: ../login.php');
+        $message = "User Created.";
     }
+
 }

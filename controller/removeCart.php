@@ -14,3 +14,6 @@ if ($key !== FALSE) {
 }
 
 header("Location: ../cart.php");
+
+
+

@@ -38,8 +38,8 @@ $result2 = mysqli_query($con, $query2);
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            <span><?php echo $row['category']; ?></span></li>
-                        <li class="breadcrumb-item active" aria-current="page"><span><?php echo $row['type']; ?></span>
+                            <span><?php echo $row['type']; ?></span></li>
+                        <li class="breadcrumb-item active" aria-current="page"><span><?php echo $row['category']; ?></span>
                         </li>
                     </ol>
                 </nav>

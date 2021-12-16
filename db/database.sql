@@ -55,7 +55,7 @@ ENGINE = InnoDB;
 CREATE VIEW featuredProducts AS
 SELECT *
 FROM product
-WHERE `type` = 'featured';
+WHERE `type` = 'playstation';
 CREATE VIEW danishPeople AS
 SELECT *
 FROM address

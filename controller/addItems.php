@@ -8,13 +8,13 @@ if (isset($_POST['submit'])) {
         echo 'Please fill in the blanks';
     } else {
 
-        $title = mysqli_real_escape_string($con, $_POST['title']);
-        $type = mysqli_real_escape_string($con, $_POST['type']);
-        $description = mysqli_real_escape_string($con, $_POST['description']);
-        $category = mysqli_real_escape_string($con, $_POST['category']);
-        $color = mysqli_real_escape_string($con, $_POST['color']);
-        $price = mysqli_real_escape_string($con, $_POST['price']);
-        $stock = mysqli_real_escape_string($con, $_POST['stock']);
+        $title = trim(mysqli_real_escape_string($con, $_POST['title']));
+        $type = trim(mysqli_real_escape_string($con, $_POST['type']));
+        $description = trim(mysqli_real_escape_string($con, $_POST['description']));
+        $category = trim(mysqli_real_escape_string($con, $_POST['category']));
+        $color = trim(mysqli_real_escape_string($con, $_POST['color']));
+        $price = trim(mysqli_real_escape_string($con, $_POST['price']));
+        $stock = trim(mysqli_real_escape_string($con, $_POST['stock']));
 
 
         $file = $_FILES["image"]["name"];

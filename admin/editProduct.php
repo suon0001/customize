@@ -26,14 +26,15 @@ $result = mysqli_query($con, $query);
         <label for="type">Type</label><br>
         <select name="type">
             <option name="type" ><?php echo $row['type']; ?></option>
-            <option value="Latest">Latest</option>
-            <option value="Featured">Featured</option>
-            <option value="Recommend">Recommend</option>
+            <option value="Playstation">Playstation</option>
+            <option value="XBOX">XBOX</option>
+            <option value="Nintendo">Nintendo</option>
+            <option value="PC">PC</option>
         </select><br><br>
 
 
         <label for="description" class="form-label">Description</label> <br>
-        <textarea class="form-control" name="description" rows="3" value="<?php echo $row['description']; ?>"></textarea>
+        <textarea class="form-control" name="description" rows="3" value=""><?php echo $row['description']; ?></textarea>
         <br>
         <br>
 
