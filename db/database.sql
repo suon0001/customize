@@ -59,4 +59,4 @@ WHERE `type` = 'playstation';
 CREATE VIEW danishPeople AS
 SELECT *
 FROM address
-WHERE `country` = 'denmark';
+WHERE `country` = 'DNK';
