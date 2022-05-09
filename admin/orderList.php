@@ -13,6 +13,10 @@ $currentUserID = $user_data['login_id'];
 $query = "SELECT * FROM `address`";
 $result = mysqli_query($con, $query);
 
+$query_2 = "SELECT * FROM address WHERE country = 'DNK'";
+$result_2 = mysqli_query($con, $query_2);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -96,6 +100,67 @@ $result = mysqli_query($con, $query);
 
     </div>
 </div>
-<
+
+<div class="container">
+    <p id="success"></p>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Manage <b>National Shipping (Denmark) </b></h2>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>NO</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Company</th>
+                <th>Country</th>
+                <th>Street</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Postelcode</th>
+                <th>Phone</th>
+                <th>Email</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <?php
+            $i = 1;
+            while ($row = mysqli_fetch_array($result_2)) {
+                ?>
+                <tr id="<?php echo $row["id"]; ?>">
+
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $row["firstName"]; ?></td>
+                    <td><?php echo $row["lastName"]; ?></td>
+                    <td><?php echo $row["company"]; ?></td>
+                    <td><?php echo $row["country"]; ?></td>
+                    <td><?php echo $row["street"]; ?></td>
+                    <td><?php echo $row["city"]; ?></td>
+                    <td><?php echo $row["postcode"]; ?></td>
+                    <td><?php echo $row["state"]; ?></td>
+                    <td><?php echo $row["phone"]; ?></td>
+                    <td><?php echo $row["email"]; ?></td>
+                    <td>
+
+                        <a href="#">View</a>
+                    </td>
+                </tr>
+                <?php
+                $i++;
+            }
+            ?>
+            </tbody>
+        </table>
+
+    </div>
+
+
 </body>
 </html>

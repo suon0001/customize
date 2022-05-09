@@ -323,7 +323,7 @@ if (!empty($_SESSION['cart'])) {
             <input type="email" name="email"/><br> <br>
 
             <input class="button" type="submit" name="submit" value="Add">
-            <a href="../view/cart.php"><input type="button" name="cancel" value="Cancel"></a>
+            <a href="../cart.php"><input type="button" name="cancel" value="Cancel"></a>
         </form>
 
         <div class="Yorder">
@@ -425,12 +425,9 @@ if (!empty($_SESSION['cart'])) {
     }
 
     .title {
-        background: -webkit-gradient(linear, left top, right bottom, color-stop(0, #5195A8), color-stop(100, #70EAFF));
-        background: -moz-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-        background: -ms-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-        background: -o-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-        background: linear-gradient(to bottom right, #5195A8 0%, #70EAFF 100%);
-        border-radius: 5px 5px 0 0;
+        background-color: #4c74af;
+        padding: 20px;
+        color: #f6f6f6;
         padding: 20px;
         color: #f6f6f6;
     }
