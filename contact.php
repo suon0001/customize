@@ -127,8 +127,8 @@ include "view/navigation.php" ?>
         margin: 20px auto 25px auto;
     }
 
-    -style: normal;
-    }
+   
+    
 </style>
 </body>
 </html>
