@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $password = trim(mysqli_real_escape_string($con, $_POST['password']));
 
 
-    $password = md5($password);
+    $password = PASSWORD_BCRYPT;
 
     $query = "SELECT * FROM users WHERE username=
                 '$username' AND password='$password'";
@@ -34,6 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     } else {
 
 
-        header('location: ../login.php');
+        echo "wrong email";
     }
 }

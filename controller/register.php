@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = trim(mysqli_real_escape_string($con, $_POST['username']));
     $email = trim(mysqli_real_escape_string($con, $_POST['email']));
     $password_1 = trim(mysqli_real_escape_string($con, $_POST['password_1']));
-    $password_2 =trim(mysqli_real_escape_string($con, $_POST['password_2']));
 
     $iterations = ['cost' => 15];
 

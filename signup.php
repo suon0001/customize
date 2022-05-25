@@ -30,7 +30,6 @@ include "view/navigation.php";
             <label>Confirm password</label>
             <input type="password" name="password_1">
             <label>Confirm password</label>
-            <input type="password" name="password_2">
             <button type="submit" class="btn" name="reg_user"> Register</button>
             <p> Already having an account? <a href="login.php"> Login Here!</a></p>
             <a href="">Forgot password?</a><br><br>

@@ -4,11 +4,10 @@ USE webshopDB;
 
 CREATE TABLE `users`
 (
-    `id`        int          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `username`  varchar(100) NOT NULL,
-    `email`     varchar(100) NOT NULL,
-    `password`  varchar(100) NOT NULL,
-    `user_type` varchar(20)  NOT NULL
+    id        int          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username  varchar(100) NOT NULL,
+    email     varchar(100) NOT NULL,
+    password  varchar(100) NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE product
