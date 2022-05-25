@@ -1,39 +1,32 @@
 <?php
-
-require_once("../db/connection.php");
-require("../includes/function.php");
+session_start();
+include('../db/connection.php');
+include('../includes/function.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
 
+    if (!empty($username) && !empty($password)) {
+        $query = "SELECT * FROM `users` WHERE `username` = '$username' LIMIT 1";
+        $result = mysqli_query($con, $query);
 
-    $username = trim(mysqli_real_escape_string($con, $_POST['username']));
-    $password = trim(mysqli_real_escape_string($con, $_POST['password']));
+        var_dump($result);
 
-
-    $password = PASSWORD_BCRYPT;
-
-    $query = "SELECT * FROM users WHERE username=
-                '$username' AND password='$password'";
-    $results = mysqli_query($con, $query);
-
-    if (mysqli_num_rows($results) == 1) {
-        $logged_in_user = mysqli_fetch_assoc($results);
-        if ($logged_in_user['user_type'] != 'admin') {
-
-            $_SESSION['user'] = $logged_in_user;
-            $_SESSION['username'] = $username;
-
-
-            header('location: ../account.php');
+        if ($result && mysqli_num_rows($result) > 0) {
+            $user_data = mysqli_fetch_assoc($result);
+            if (password_verify($password, $user_data['password'])) {
+                $_SESSION['userID'] = $user_data['username'];
+                header('Location: ../account.php');
+            } else {
+                $error = "Invalid username or password";
+            }
         } else {
-
-            $_SESSION['user'] = $logged_in_user;
-            $_SESSION['username'] = $username;
-            header('location: ../admin/adminView.php');
+            $error = "Invalid username or password";
         }
+
+       
     } else {
-
-
-        echo "wrong email";
+        echo "<div class='error'>Please fill out everything</div>";
     }
 }

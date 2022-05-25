@@ -1,67 +1,67 @@
 <?php
-session_start();
 require("db/connection.php");
 require("includes/function.php");
 include "view/navigation.php"
-
 ?>
+
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/main.css">
     <title>Login</title>
 </head>
+
 <body>
-<div class="container">
-    <form action="controller/loginController.php" method="post">
-        <h4>ACCOUNT</h4> <br>
-        <div class="row">
-            <label>Enter Username</label>
-            <input type="text" name="username" >
-            <label>Enter Password</label>
-            <input type="password" name="password">
-            <button type="submit" class="btn" name="login_user"> Login </button>
-            <a href="signup.php">Make a account</a><br><br>
-            <a href="">Forgot password?</a><br><br>
-        </div>
-    </form>
-</div>
+    <div class="container">
+        <form action="controller/loginController.php" method="POST">
+            <h4>ACCOUNT</h4> <br>
+            <div class="row">
+                <label>Enter Username</label>
+                <input type="text" name="username" />
+                <label>Enter Password</label>
+                <input type="password" name="password" />
+                <button type="submit" name="login" class="btn">Login</button>
+                <a href="signup.php">Make a account</a><br><br>
+                <a href="">Forgot password?</a><br><br>
+            </div>
+        </form>
+    </div>
 
-<style>
-    body {
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 15px;
-        color: #b9b9b9;
-    }
+    <style>
+        body {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            color: #b9b9b9;
+        }
 
-    h4 {
-        color: #789bbe;
-    }
+        h4 {
+            color: #789bbe;
+        }
 
-    input {
-        width: 100%;
-        padding: 10px;
-        margin: 5px;
-        line-height: 1.4;
-        background-color: #f9f9f9;
-        border: 1px solid #e5e5e5;
-        border-radius: 3px;
-    }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px;
+            line-height: 1.4;
+            background-color: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px;
+        }
 
 
-    .container {
-        max-width: 38em;
-        padding: 1em 3em 2em 3em;
-        margin: 10px auto;
-        background-color: #fff;
-        border-radius: 4px;
-        box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
-    }
-
-</style>
+        .container {
+            max-width: 38em;
+            padding: 1em 3em 2em 3em;
+            margin: 10px auto;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </body>
+
 </html>
