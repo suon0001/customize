@@ -7,8 +7,8 @@ CREATE TABLE `users`
     id        int          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username  varchar(100) NOT NULL,
     email     varchar(100) NOT NULL,
-    password  varchar(100) NOT NULL,
-    user_type varchar(20)  NOT NULL
+    password  varchar(100) NOT NULL
+
 ) ENGINE = InnoDB;
 
 CREATE TABLE product
@@ -56,7 +56,14 @@ CREATE VIEW featuredProducts AS
 SELECT *
 FROM product
 WHERE `type` = 'playstation';
+
 CREATE VIEW danishPeople AS
 SELECT *
 FROM address
 WHERE `country` = 'DNK';
+
+CREATE TRIGGER BeforeProductTime BEFORE UPDATE ON `product`
+FOR EACH ROW BEGIN
+SET new.time_date = NOW();
+END
+
