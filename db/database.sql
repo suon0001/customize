@@ -7,7 +7,8 @@ CREATE TABLE `users`
     id        int          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username  varchar(100) NOT NULL,
     email     varchar(100) NOT NULL,
-    password  varchar(100) NOT NULL
+    password  varchar(100) NOT NULL,
+    user_type varchar(100) NOT NULL
 
 ) ENGINE = InnoDB;
 
@@ -39,17 +40,6 @@ CREATE TABLE address
     phone     VARCHAR(50)  NULL,
     email     VARCHAR(255) NULL
 ) ENGINE = InnoDB;
-
-CREATE TABLE orderDetails
-(
-    order_id     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name       VARCHAR(255),
-    id         INT NOT NULL,
-    product_id INT NOT NULL,
-    FOREIGN KEY (id) REFERENCES address (id),
-    FOREIGN KEY (product_id) REFERENCES product (product_id)
-);
-ENGINE = InnoDB;
 
 
 CREATE VIEW featuredProducts AS
