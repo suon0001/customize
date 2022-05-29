@@ -1,14 +1,8 @@
 <?php
-if (!isset($_SERVER['HTTP_REFERER'])) {
-    header('location: ../home.php');
-    exit;
-}
 
 include('../db/connection.php');
 include("../includes/function.php");
 
-$user_data = check_login($con);
-$currentUserID = $user_data['login_id'];
 
 $query = "SELECT * FROM `address`";
 $result = mysqli_query($con, $query);

@@ -20,37 +20,7 @@ $query = "SELECT * FROM product ORDER BY product_id ASC LIMIT $start_from, $limi
 $result = mysqli_query($con, $query);
 
 
-if (isset($_POST['add_to_cart'])) {
-    if (isset($_SESSION['shopping_cart'])) {
-        $item_array_id = array_column($_SESSION['shopping_cart'], "product_id");
-        print_r($item_array_id);
 
-        if (in_array($_GET['id'], $item_array_id)) {
-            $count = count($_SESSION['shopping_cart']);
-            $item_array = array(
-                'product_id' => $_GET['id'],
-                'title' => $_POST['hidden_title'],
-                'price' => $_POST['hidden_price'],
-                'quantity' => $_POST['quantity'],
-            );
-            $_SESSION['shopping_cart'] [$count] = $item_array;
-
-
-        } else {
-            echo '<script>alert("item already added")</script>';
-            echo '<script>window.location="products.php"</script>';
-        }
-
-    } else {
-        $item_array = array(
-            'product_id' => $_GET['id'],
-            'title' => $_POST['hidden_title'],
-            'price' => $_POST['hidden_price'],
-            'quantity' => $_POST['quantity'],
-        );
-        $_SESSION['shopping_cart'] [0] = $item_array;
-    }
-}
 
 
 

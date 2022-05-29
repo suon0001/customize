@@ -9,9 +9,6 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
 include "db/connection.php";
 include("includes/function.php");
 
-$user_data = check_login($con);
-$currentUserID = $user_data['login_id'];
-
 $query = "SELECT * FROM `product`";
 $result = mysqli_query($con, $query);
 
@@ -28,7 +25,9 @@ if (!empty($_SESSION['cart'])) {
     $result = $con->query($query);
 }
 
-include 'view/navigation.php'
+include 'view/navigation.php';
+
+
 ?>
 
 

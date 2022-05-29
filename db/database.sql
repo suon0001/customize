@@ -52,8 +52,19 @@ SELECT *
 FROM address
 WHERE `country` = 'DNK';
 
+DELIMITER //
 CREATE TRIGGER BeforeProductTime BEFORE UPDATE ON `product`
 FOR EACH ROW BEGIN
 SET new.time_date = NOW();
-END
+END //
+
+DELIMITER //
+CREATE TRIGGER `after_addresss_delete` AFTER DELETE ON `address` 
+FOR EACH ROW 
+BEGIN
+    INSERT INTO address
+    SET action_performed  = 'Deleted a address',
+    address_name =  OLD.firstName;
+END //
+
 
